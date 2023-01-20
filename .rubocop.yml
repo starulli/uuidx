@@ -9,6 +9,9 @@ AllCops:
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
+Style/FormatStringToken:
+  EnforcedStyle: unannotated
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
