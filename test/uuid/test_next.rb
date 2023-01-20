@@ -6,4 +6,12 @@ class UuidTestNext < Minitest::Test
   def test_that_it_has_a_version_number
     refute_nil ::Uuid::Next::VERSION
   end
+
+  def test_that_it_has_the_nil_uuid
+    refute_nil ::Uuid::Next::NIL_UUID
+  end
+
+  def test_that_it_has_the_max_uuid
+    refute_nil ::Uuid::Next::MAX_UUID
+  end
 end
