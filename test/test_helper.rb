@@ -6,9 +6,9 @@ require "uuid/next"
 require "minitest"
 
 class Minitest::Test
-  def env_stubs(&block)
-    Process.stub :clock_gettime, 0 do
-      SecureRandom.stub :bytes, "\x1\x2\x3\x4\x5\x6\x7\x8" do
+  def env_stubs(time: 0, bytes: "\x1\x2\x3\x4\x5\x6\x7\x8", &block)
+    Process.stub :clock_gettime, time do
+      SecureRandom.stub :bytes, bytes do
         block.call
       end
     end
