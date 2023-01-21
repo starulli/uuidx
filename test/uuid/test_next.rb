@@ -14,4 +14,8 @@ class UuidTestNext < Minitest::Test
   def test_that_it_has_the_max_uuid
     refute_nil ::Uuid::Next::MAX_UUID
   end
+
+  def test_that_it_exposes_uuid6
+    refute_nil ::Uuid::Next::V6
+  end
 end
