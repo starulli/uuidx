@@ -6,9 +6,6 @@ AllCops:
   TargetRubyVersion: 2.7
   NewCops: enable
 
-Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
-
 Style/FormatStringToken:
   EnforcedStyle: unannotated
 
