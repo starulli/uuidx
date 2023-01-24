@@ -18,6 +18,10 @@ class TestUuidValue < Minitest::Test
     assert_equal 7, @uuid.version
   end
 
+  def test_variant_is_accessible
+    assert_equal 2, @uuid.variant
+  end
+
   def test_value_is_accessible
     assert_equal VALUE_AS_INT, @uuid.value
   end

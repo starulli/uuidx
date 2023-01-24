@@ -58,6 +58,10 @@ module Uuid
       (value >> 76) & 0xf
     end
 
+    def variant
+      (value >> 62) & 0x3
+    end
+
     # :nodoc:
     def <=>(other)
       return nil if version != other.version
