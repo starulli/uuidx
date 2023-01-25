@@ -3,7 +3,7 @@
 require "securerandom"
 
 module Uuid
-  # UUID Version 7 defined by {RFC 4122 BIS-00 Draft
+  # UUID Version 6 defined by {RFC 4122 BIS-00 Draft
   # }[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-00.html#name-uuid-version-6].
   #
   # To construct a new UUID Version 6 Value use ::generate
