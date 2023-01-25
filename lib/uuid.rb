@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "uuid/version6"
 require_relative "uuid/version7"
 require_relative "uuid/value"
 
