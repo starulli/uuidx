@@ -5,5 +5,5 @@ module Uuid
   # }[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-00.html#name-max-uuid].
   #
   # This UUID is written as +ffffffff-ffff-ffff-ffff-fffffffffffff+ and is greater than all other UUIDs in comparisons.
-  MAX = Value.new((2**128) - 1).freeze
+  Max = Value.new((2**128) - 1).freeze
 end
