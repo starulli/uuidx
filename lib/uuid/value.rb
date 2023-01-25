@@ -64,8 +64,6 @@ module Uuid
 
     # :nodoc:
     def <=>(other)
-      return nil if version != other.version
-
       value <=> other.value
     end
   end

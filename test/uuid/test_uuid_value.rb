@@ -34,9 +34,9 @@ class TestUuidValue < Minitest::Test
     refute_equal @uuid, smaller
   end
 
-  def test_uuids_of_different_versions_cannot_be_compared
+  def test_uuids_of_different_versions_can_be_compared
     different = ::Uuid::Value.from("011f71fb-268d-6708-8102-030405060708")
 
-    assert_nil @uuid <=> different
+    refute_nil @uuid <=> different
   end
 end

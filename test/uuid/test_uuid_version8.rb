@@ -3,22 +3,8 @@
 require "test_helper"
 
 class TestUuidVersion8 < Minitest::Test
-  module OverflowingGenerator
-    def self.custom_a
-      (2**49) + 1
-    end
-
-    def self.custom_b
-      (2**13) + 2
-    end
-
-    def self.custom_c
-      (2**63) + 3
-    end
-  end
-
   def setup
-    ::Uuid::Version8.generator = OverflowingGenerator
+    ::Uuid::Version8.generator = ::OverflowingGenerator
     @uuid = ::Uuid::Version8.generate
   end
 
