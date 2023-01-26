@@ -58,6 +58,7 @@ module Uuid
       (value >> 76) & 0xf
     end
 
+    # The UUID variant as an +Integer+.
     def variant
       (value >> 62) & 0x3
     end
