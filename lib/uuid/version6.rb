@@ -40,5 +40,15 @@ module Uuid
 
     reset_node_id!
     reset_clock_sequence!
+
+    # Verify that the clock resolution is capable of 100ns resolution.
+    #
+    # Raises ClockResolutionError when the clock resolution is insufficient.
+    def self.verify_clock_resolution!
+      ns_res = Process.clock_getres(:CLOCK_REALTIME, :nanosecond)
+      raise ClockResolutionError, "Detected #{ns_res}ns resolution, need <= 100ns" if ns_res > 100
+
+      true
+    end
   end
 end

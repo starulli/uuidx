@@ -37,5 +37,15 @@ module Uuid
     end
 
     private_class_method :byte_pool, :refill_pool!
+
+    # Verify that the clock resolution is capable of 1ms resolution.
+    #
+    # Raises ClockResolutionError when the clock resolution is insufficient.
+    def self.verify_clock_resolution!
+      ms_res = Process.clock_getres(:CLOCK_REALTIME, :millisecond)
+      raise ClockResolutionError, "Detected #{ms_res}ms resolution, need <= 1ms" if ms_res > 1
+
+      true
+    end
   end
 end
