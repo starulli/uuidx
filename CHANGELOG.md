@@ -1,5 +1,11 @@
 # CHANGELOG
+
 ## Pre-release
+
+### 0.4.0 &ndash; 2023-01-26
+- Add clock resolution verification methods
+- UUID v6 and v7 are now thread-safe
+
 ### 0.3.0 &ndash; 2023-01-25
 - New, faster design of UUID generator modules
 - Removal of old implementations
