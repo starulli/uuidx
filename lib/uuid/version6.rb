@@ -37,11 +37,12 @@ module Uuid
     end
 
     # Reset the generator with a new random node ID and clock sequence.
+    #
+    # This method is not thread-safe and should only be called at application or child process start.
     def self.reset!
       @last_ts = 0
       @node_id = SecureRandom.bytes(8).unpack1("Q>") & 0xffffffffffff
-      val = SecureRandom.bytes(4).unpack1("L>")
-      @seq_lock.synchronize { @clock_sequence = val }
+      @clock_sequence = SecureRandom.bytes(4).unpack1("L>")
     end
 
     reset!
