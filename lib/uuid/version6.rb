@@ -15,6 +15,7 @@ module Uuid
     VERSION = 0x6 << 76 # :nodoc:
     VARIANT = 0x2 << 62 # :nodoc:
     GREGORIAN_MICROSECOND_TENTHS = 122_192_928_000_000_000 # :nodoc:
+    @last_ts = 0
     @seq_lock = Mutex.new
 
     # Construct a UUID Version 6 Value.
@@ -23,8 +24,10 @@ module Uuid
       ts_high_mid = ((ts >> 12) & 0xffffffffffff) << 80
       ts_low = (ts & 0xfff) << 64
 
-      seq = @seq_lock.synchronize { @clock_sequence += 1 }
-      seq = (seq & 0x3fff) << 48
+      @seq_lock.synchronize { @clock_sequence += 1 } if ts <= @last_ts
+      @last_ts = ts
+
+      seq = (@clock_sequence & 0x3fff) << 48
 
       Value.new ts_high_mid | VERSION | ts_low | VARIANT | seq | @node_id
     end
