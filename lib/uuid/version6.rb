@@ -19,7 +19,7 @@ module Uuid
 
     # Construct a UUID Version 6 Value.
     def self.generate
-      ts = GREGORIAN_MICROSECOND_TENTHS + (Process.clock_gettime(:CLOCK_REALTIME, :nanosecond) / 100)
+      ts = GREGORIAN_MICROSECOND_TENTHS + (Process.clock_gettime(Process::CLOCK_REALTIME, :nanosecond) / 100)
       ts_high_mid = ((ts >> 12) & 0xffffffffffff) << 80
       ts_low = (ts & 0xfff) << 64
 
@@ -47,7 +47,7 @@ module Uuid
     #
     # Raises ClockResolutionError when the clock resolution is insufficient.
     def self.verify_clock_resolution!
-      ns_res = Process.clock_getres(:CLOCK_REALTIME, :nanosecond)
+      ns_res = Process.clock_getres(Process::CLOCK_REALTIME, :nanosecond)
       raise ClockResolutionError, "Detected #{ns_res}ns resolution, need <= 100ns" if ns_res > 100
 
       true
