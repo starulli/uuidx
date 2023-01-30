@@ -12,10 +12,8 @@ class TestUuidVersion6 < Minitest::Test
   def setup
     Process.stub :clock_gettime, TIME do
       SecureRandom.stub :bytes, "\x0\x1\x2\x3\x4\x5\x6\x7\x8\x9\xa\xb" do
-        ::Uuid::Version6.send(:reset_node_id!)
-        ::Uuid::Version6.send(:reset_clock_sequence!)
-        ::Uuid::Version6.instance_variable_set(:@last_ts, 0)
-        @uuid = ::Uuid::Version6.generate
+        Uuid::Version6.reset!
+        @uuid = Uuid::Version6.generate
       end
     end
   end
