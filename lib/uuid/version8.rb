@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Uuid
-  # UUID Version 8 defined by {RFC 4122 BIS-00 Draft
-  # }[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-00.html#name-uuid-version-8].
+  # UUID Version 8 defined by {RFC 4122 BIS-01 Draft
+  # }[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-8].
   #
   # Since UUID Version 8 is entirely custom to your application, first create a generator class.
   #   class MyGenerator < Uuid::Version8
