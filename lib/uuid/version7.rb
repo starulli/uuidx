@@ -30,7 +30,7 @@ module Uuid
         @pool = SecureRandom.bytes(NEEDED_BYTES).unpack(UNPACK_FORMAT) if @pool.empty?
         @pool.pop(2)
       end
-      ts = (Process.clock_gettime(:CLOCK_REALTIME, :millisecond) & 0xffffffffffff) << 80
+      ts = (Process.clock_gettime(Process::CLOCK_REALTIME, :millisecond) & 0xffffffffffff) << 80
       Value.new ts | VERSION | ((a & 0xfff) << 64) | VARIANT | (b & 0x3fffffffffffffff)
     end
 
@@ -38,7 +38,7 @@ module Uuid
     #
     # Raises ClockResolutionError when the clock resolution is insufficient.
     def self.verify_clock_resolution!
-      ms_res = Process.clock_getres(:CLOCK_REALTIME, :millisecond)
+      ms_res = Process.clock_getres(Process::CLOCK_REALTIME, :millisecond)
       raise ClockResolutionError, "Detected #{ms_res}ms resolution, need <= 1ms" if ms_res > 1
 
       true

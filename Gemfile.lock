@@ -39,6 +39,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  ruby
 
 DEPENDENCIES
   benchmark-ips (~> 2.10.0)
