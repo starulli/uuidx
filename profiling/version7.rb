@@ -1,3 +1,4 @@
 require_relative "../lib/uuid"
 
-100_000.times { Uuid::Version7.generate }
+g = Uuid::Version7.new
+100_000.times { g.generate }

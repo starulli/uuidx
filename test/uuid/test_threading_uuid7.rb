@@ -3,13 +3,17 @@
 require "test_helper"
 
 class TestThreadingUuid7 < Minitest::Test
-  THREAD_COUNT = 3
-  TOTAL_UUIDS = 15_000
-  UUID_COUNT = TOTAL_UUIDS / 3
+  THREAD_COUNT = 20
+  TOTAL_UUIDS = 5_000_000
+  UUID_COUNT = TOTAL_UUIDS / THREAD_COUNT
+
+  def setup
+    @gen = Uuid::Version7.new
+  end
 
   def generate_uuids
     Thread.new do
-      (1..UUID_COUNT).map { Uuid::Version7.generate.to_s }
+      (1..UUID_COUNT).map { @gen.generate.to_s }
     end
   end
 
