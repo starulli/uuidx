@@ -13,7 +13,7 @@ class TestThreadingUuid7 < Minitest::Test
     end
   end
 
-  def test_clock_sequence_is_thread_safe
+  def test_randomization_is_thread_safe
     # Insert a +sleep(0.001)+ call in between the pool empty check and write operations to thread switch. If this
     # isn't done, it is statistically unlikely to cause a thread-safety issue.
     Process.stub :clock_gettime, 0xcba987654321 do
