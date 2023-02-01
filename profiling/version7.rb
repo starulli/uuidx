@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "../lib/uuid"
 
 g = Uuid::Version7.new
