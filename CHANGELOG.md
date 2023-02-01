@@ -2,6 +2,10 @@
 
 ## Pre-release
 
+### 0.5.0 &ndash; 2023-01-31
+- Threading safety for clock sequence in UUID v6
+- Clock drift detection in UUID v6
+
 ### 0.4.0 &ndash; 2023-01-26
 - Add clock resolution verification methods
 - UUID v6 and v7 are now thread-safe
