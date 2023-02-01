@@ -21,8 +21,10 @@ end
 Uuid::Version8.generator = ConstantGenerator
 
 Benchmark.ips do |b|
+  gen6 = Uuid::Version6.new
+
   b.report("stdlib") { SecureRandom.uuid }
-  b.report("uuid6") { Uuid::Version6.generate }
+  b.report("uuid6") { gen6.generate }
   b.report("uuid7") { Uuid::Version7.generate }
   # b.report("uuid8") { Uuid::Version8.generate }
   b.compare!

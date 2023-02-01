@@ -6,22 +6,27 @@ module Uuid
   # UUID Version 6 defined by {RFC 4122 BIS-00 Draft
   # }[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-00.html#name-uuid-version-6].
   #
-  # To construct a new UUID Version 6 Value use ::generate
+  # To construct a new UUID Version 6 Value use #generate
   #   Uuid::Version6.generate # => <Uuid::Value ...>
   #
   # The implementation will use +SecureRandom+ to populate the Node and Clock Sequence bits with a random value
   # at module load time.
   #
-  # Generation is thread-safe, but if you are using multi-process clusters you should call ::reset! at the start
+  # Generation is thread-safe, but if you are using multi-process clusters you should call #reset! at the start
   # of each process to reduce the chance of two processes generating the same value.
-  module Version6
+  class Version6
     VERSION = 0x6 << 76 # :nodoc:
     VARIANT = 0x2 << 62 # :nodoc:
     GREGORIAN_MICROSECOND_TENTHS = 122_192_928_000_000_000 # :nodoc:
-    @seq_lock = Mutex.new
+
+    # Construct a new UUID v6 generator.
+    def initialize
+      @seq_lock = Mutex.new
+      reset!
+    end
 
     # Construct a UUID Version 6 Value.
-    def self.generate
+    def generate
       ts = GREGORIAN_MICROSECOND_TENTHS + (Process.clock_gettime(Process::CLOCK_REALTIME, :nanosecond) / 100)
       seq = @seq_lock.synchronize do
         @clock_sequence += 1 if ts <= @last_ts
@@ -39,13 +44,11 @@ module Uuid
     # Reset the generator with a new random node ID and clock sequence.
     #
     # This method is not thread-safe and should only be called at application or child process start.
-    def self.reset!
+    def reset!
       @last_ts = 0
       @node_id = SecureRandom.bytes(8).unpack1("Q>") & 0xffffffffffff
       @clock_sequence = SecureRandom.bytes(4).unpack1("L>")
     end
-
-    reset!
 
     # Verify that the clock resolution is capable of 100ns resolution.
     #

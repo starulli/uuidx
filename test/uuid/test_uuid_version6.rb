@@ -12,15 +12,16 @@ class TestUuidVersion6 < Minitest::Test
   def setup
     Process.stub :clock_gettime, TIME do
       SecureRandom.stub :bytes, "\x0\x1\x2\x3\x4\x5\x6\x7\x8\x9\xa\xb" do
-        Uuid::Version6.reset!
-        @uuid = Uuid::Version6.generate
+        @gen = Uuid::Version6.new
+        @gen.reset!
+        @uuid = @gen.generate
       end
     end
   end
 
   def test_clock_sequence_changes_when_time_drifts_backward
     past_uuid = Process.stub :clock_gettime, TIME - 100 do
-      Uuid::Version6.generate
+      @gen.generate
     end
 
     refute_equal clock_seq(past_uuid), clock_seq(@uuid)
@@ -28,7 +29,7 @@ class TestUuidVersion6 < Minitest::Test
 
   def test_clock_sequence_changes_when_two_uuids_have_the_same_timestamp
     past_uuid = Process.stub :clock_gettime, TIME do
-      Uuid::Version6.generate
+      @gen.generate
     end
 
     refute_equal clock_seq(past_uuid), clock_seq(@uuid)
