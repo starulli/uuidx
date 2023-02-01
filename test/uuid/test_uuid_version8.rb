@@ -4,8 +4,7 @@ require "test_helper"
 
 class TestUuidVersion8 < Minitest::Test
   def setup
-    ::Uuid::Version8.generator = ::OverflowingGenerator
-    @uuid = ::Uuid::Version8.generate
+    @uuid = OverflowingV8Generator.new.generate
   end
 
   def test_uuid_is_correct

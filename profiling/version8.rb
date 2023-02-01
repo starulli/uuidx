@@ -1,19 +1,18 @@
 require_relative "../lib/uuid"
 
-module ConstantGenerator
-  def self.custom_a
+class ConstantGenerator < Uuid::Version8
+  def custom_a
     1
   end
 
-  def self.custom_b
+  def custom_b
     2
   end
 
-  def self.custom_c
+  def custom_c
     3
   end
 end
 
-Uuid::Version8.generator = ConstantGenerator
-
-100_000.times { Uuid::Version8.generate }
+g = ConstantGenerator.new
+100_000.times { g.generate }

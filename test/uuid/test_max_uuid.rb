@@ -12,11 +12,13 @@ class TestMaxUuid < Minitest::Test
   end
 
   def test_max_is_greater_than_other_uuids
-    Uuid::Version8.generator = ::OverflowingGenerator
+    gen6 = Uuid::Version6.new
+    gen7 = Uuid::Version7.new
+    gen8 = OverflowingV8Generator.new
 
     assert Uuid::Max > Uuid::Nil
-    100_000.times { assert Uuid::Max > Uuid::Version6.generate }
-    100_000.times { assert Uuid::Max > Uuid::Version7.generate }
-    100_000.times { assert Uuid::Max > Uuid::Version8.generate }
+    100_000.times { assert Uuid::Max > gen6.generate }
+    100_000.times { assert Uuid::Max > gen7.generate }
+    100_000.times { assert Uuid::Max > gen8.generate }
   end
 end

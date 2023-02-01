@@ -12,11 +12,13 @@ class TestNilUuid < Minitest::Test
   end
 
   def test_nil_is_less_than_other_uuids
-    Uuid::Version8.generator = ::OverflowingGenerator
+    gen6 = Uuid::Version6.new
+    gen7 = Uuid::Version7.new
+    gen8 = OverflowingV8Generator.new
 
     assert Uuid::Nil < Uuid::Max
-    100_000.times { assert Uuid::Nil < Uuid::Version6.generate }
-    100_000.times { assert Uuid::Nil < Uuid::Version7.generate }
-    100_000.times { assert Uuid::Nil < Uuid::Version8.generate }
+    100_000.times { assert Uuid::Nil < gen6.generate }
+    100_000.times { assert Uuid::Nil < gen7.generate }
+    100_000.times { assert Uuid::Nil < gen8.generate }
   end
 end
