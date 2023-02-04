@@ -2,6 +2,11 @@
 
 ## Pre-release
 
+### 0.6.0 &ndash; 2023-02-04
+- Convert generator modules to classes
+- Fix clock ID references in UUID v7
+- Pass tests on all supported versions of Ruby
+
 ### 0.5.0 &ndash; 2023-01-31
 - Threading safety for clock sequence in UUID v6
 - Clock drift detection in UUID v6
