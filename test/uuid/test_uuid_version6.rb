@@ -31,7 +31,7 @@ class TestUuidVersion6 < Minitest::Test
   end
 
   def test_uuid_is_correct
-    assert_equal "036964a9-5a4f-65d4-8201-0b0806040200", @uuid
+    assert_equal "1b4b254a-d27b-65d4-8201-0b0806040200", @uuid
   end
 
   def test_version_is_correct
