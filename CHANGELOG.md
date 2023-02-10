@@ -2,6 +2,10 @@
 
 ## Pre-release
 
+### 0.7.0 &ndash; 2023-02-10
+- Generator APIs now return opaque string values for UUIDs
+- Add faster UUID v4 implementation
+
 ### 0.6.0 &ndash; 2023-02-04
 - Convert generator modules to classes
 - Fix clock ID references in UUID v7
