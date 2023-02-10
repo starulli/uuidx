@@ -3,17 +3,12 @@
 require "test_helper"
 
 class TestUuidVersion6 < Minitest::Test
-  TIME = 0xcba987654321
-
-  def clock_seq(uuid)
-    (uuid.value >> 48) & 0x3fff
-  end
+  TIME = 0x0102030405060708
 
   def setup
     Process.stub :clock_gettime, TIME do
-      SecureRandom.stub :bytes, "\x0\x1\x2\x3\x4\x5\x6\x7\x8\x9\xa\xb" do
+      SecureRandom.stub :bytes, "\x0\x2\x4\x6\x8\xa\x9\x9" do
         @gen = Uuid::Version6.new
-        @gen.reset!
         @uuid = @gen.generate
       end
     end
@@ -24,7 +19,7 @@ class TestUuidVersion6 < Minitest::Test
       @gen.generate
     end
 
-    refute_equal clock_seq(past_uuid), clock_seq(@uuid)
+    refute_equal past_uuid, @uuid
   end
 
   def test_clock_sequence_changes_when_two_uuids_have_the_same_timestamp
@@ -32,22 +27,26 @@ class TestUuidVersion6 < Minitest::Test
       @gen.generate
     end
 
-    refute_equal clock_seq(past_uuid), clock_seq(@uuid)
+    refute_equal past_uuid, @uuid
   end
 
   def test_uuid_is_correct
-    assert_equal "1b21fdb7-3942-6ec0-8203-020304050607", @uuid.to_s
+    assert_equal "036964a9-5a4f-65d4-8201-0b0806040200", @uuid
   end
 
   def test_version_is_correct
-    assert_equal 6, @uuid.version
+    assert_equal "6", @uuid[14]
   end
 
   def test_variant_is_correct
-    assert_equal 2, @uuid.variant
+    assert_equal "8", @uuid[19]
   end
 
   def test_clock_sequence_is_correct
-    assert_equal 515, clock_seq(@uuid)
+    assert_equal "8201", @uuid[19..22]
+  end
+
+  def test_node_id_multicast_bit_is_set
+    assert_equal "0b", @uuid[24..25]
   end
 end

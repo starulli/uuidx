@@ -13,4 +13,13 @@ require_relative "uuid/version8"
 # NOTE: clock resolution can be verified for v6 and v7.
 # :include: README.md
 module Uuid
+  # :nodoc:
+  def self.format(value)
+    b = +value.to_s(16).rjust(32, "0")
+    b.insert(8, "-")
+    b.insert(13, "-")
+    b.insert(18, "-")
+    b.insert(23, "-")
+    b.freeze
+  end
 end
