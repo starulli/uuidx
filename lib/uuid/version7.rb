@@ -3,8 +3,8 @@
 require "securerandom"
 
 module Uuid
-  # UUID Version 7 defined by {RFC 4122 BIS-01 Draft
-  # }[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-7].
+  # UUID Version 7 defined by the
+  # {RFC 4122 BIS-01 Draft}[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-7].
   #
   # To construct a new UUID v7 value create a generator, then use #generate.
   #   g = Uuid::Version7.new
@@ -16,9 +16,9 @@ module Uuid
     BUFFER_SIZE = 64 # :nodoc:
     NEEDED_BYTES = BUFFER_SIZE * 10 # :nodoc:
     UNPACK_FORMAT = "SQ" * BUFFER_SIZE # :nodoc:
-    TS_MASK = 0xffffffffffff # :nodoc:
+    TS_MASK = 0xffff_ffffffff # :nodoc:
     RAND_A_MASK = 0xfff # :nodoc:
-    RAND_B_MASK = 0x3fffffffffffffff # :nodoc:
+    RAND_B_MASK = 0x3fffffff_ffffffff # :nodoc:
     TS_SHIFT = 16 # :nodoc:
     HIGH_SHIFT = 64 # :nodoc:
 

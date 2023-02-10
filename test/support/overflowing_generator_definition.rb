@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OverflowingV8Generator < Uuid::Version8
+class OverflowingGeneratorDefinition
   def custom_a
     (2**49) + 1
   end

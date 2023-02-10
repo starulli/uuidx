@@ -3,7 +3,7 @@
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 require "uuid"
 
-require "support/overflowing_generator"
+require "support/overflowing_generator_definition"
 
 require "minitest"
 require "minitest/benchmark" if ENV["BENCH"]
