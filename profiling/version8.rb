@@ -2,7 +2,7 @@
 
 require_relative "../lib/uuid"
 
-class ConstantGenerator < Uuid::Version8
+class ConstantGeneratorDefinition # :nodoc:
   def custom_a
     1
   end
@@ -16,5 +16,5 @@ class ConstantGenerator < Uuid::Version8
   end
 end
 
-g = ConstantGenerator.new
+g = Uuid::Version8.new(ConstantGeneratorDefinition)
 100_000.times { g.generate }
