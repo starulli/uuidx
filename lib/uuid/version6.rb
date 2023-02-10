@@ -6,7 +6,7 @@ module Uuid
   # UUID Version 6 defined by the
   # {RFC 4122 BIS-01 Draft}[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-6].
   #
-  # To construct a new UUID Version 6 value create a generator, then use #generate.
+  # To construct a new UUID v6 value create a generator, then use #generate.
   #   g = Uuid::Version6.new
   #   g.generate # => "1eda9761-9f6f-6414-8c5f-fd61f1239907"
   #
@@ -35,7 +35,7 @@ module Uuid
       reset!
     end
 
-    # Construct a UUID Version 6 Value.
+    # Construct a UUID v6 value.
     def generate
       seq = @seq_lock.synchronize do
         @clock_sequence = (@clock_sequence + CLOCK_SEQ_INCREMENT) & CLOCK_SEQ_MASK
