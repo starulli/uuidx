@@ -1,0 +1,10 @@
+module Uuid
+  class Version7
+    public
+
+    def initialize: () -> void
+    def generate: () -> uuid
+
+    def self.verify_clock_resolution!: () -> true
+  end
+end

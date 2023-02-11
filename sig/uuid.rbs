@@ -1,0 +1,22 @@
+# See the writing guide of rbs: https://github.com/ruby/rbs#guides
+
+module Uuid
+  VERSION: String
+
+  type uuid = String
+
+  public
+
+  def self.nil_uuid: () -> uuid
+  def self.max_uuid: () -> uuid
+  def self.v4: () -> uuid
+  def self.v6: () -> uuid
+  def self.v7: () -> uuid
+  def self.reset_v4!: () -> void
+  def self.reset_v6!: () -> void
+  def self.reset_v7!: () -> void
+
+  private
+
+  def self.format: (Integer) -> uuid
+end

@@ -1,0 +1,6 @@
+module Uuid
+  class Version4
+    def initialize: () -> void
+    def generate: () -> uuid
+  end
+end

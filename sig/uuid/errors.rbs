@@ -1,0 +1,7 @@
+module Uuid
+  class Error < StandardError
+  end
+
+  class ClockResolutionError < Error
+  end
+end

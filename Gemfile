@@ -8,6 +8,7 @@ gemspec
 gem "benchmark-ips", "~> 2.10.0"
 gem "minitest", "~> 5.0"
 gem "rake", "~> 13.0"
+gem "rbs", "~> 2.8"
 gem "rubocop", "~> 1.21"
 gem "rubocop-minitest", "~> 0.26.1"
 gem "rubocop-rake", "~> 0.6.0"

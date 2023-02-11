@@ -1,0 +1,14 @@
+module Uuid
+  class Version8
+    public
+
+    interface _GeneratorDefinition
+      def custom_a: () -> Integer
+      def custom_b: () -> Integer
+      def custom_c: () -> Integer
+    end
+
+    def initialize: [Definition < _GeneratorDefinition] (Definition) -> void
+    def generate: () -> uuid
+  end
+end

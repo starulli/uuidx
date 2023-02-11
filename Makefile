@@ -30,3 +30,14 @@ test-%:
 	@echo "Testing alpine based Ruby $*..."
 	@docker build --build-arg "RUBY_VERSION=$*" -t "$(DOCKER_TAG_PREFIX)$*-alpine" -f Dockerfile.alpine .
 	@docker run --rm -t -v $(PWD):/proj -w /proj $(DOCKER_TAG_PREFIX)$*-alpine
+
+
+#======================================#
+# Testing RBS Types                    #
+#======================================#
+
+rbs:
+	@echo Running tests with type checks...
+	@RUBYOPT='-rrbs/test/setup' RBS_TEST_LOGLEVEL=error RBS_TEST_RAISE=true \
+		RBS_TEST_OPT='-Isig' RBS_TEST_TARGET='Uuid,Uuid::*' \
+		bundle exec rake test
