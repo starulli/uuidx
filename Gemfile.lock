@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    uuid-next (0.8.0)
+    uuidx (0.8.0)
 
 GEM
   remote: https://rubygems.org/
@@ -49,7 +49,7 @@ DEPENDENCIES
   rubocop-minitest (~> 0.26.1)
   rubocop-rake (~> 0.6.0)
   ruby-prof (~> 1.4)
-  uuid-next!
+  uuidx!
 
 BUNDLED WITH
    2.4.3

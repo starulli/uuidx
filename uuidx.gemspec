@@ -3,14 +3,14 @@
 require_relative "lib/uuid/gem_version"
 
 Gem::Specification.new do |spec|
-  spec.name = "uuid-next"
+  spec.name = "uuidx"
   spec.version = Uuid::VERSION
   spec.authors = ["Stephan Tarulli"]
   spec.email = ["srt@tinychameleon.com"]
 
-  spec.summary = "A fast ruby implementation of the proposed UUID v6, v7, and v8 formats"
-  spec.description = "A fast ruby implementation of the proposed UUID v6, v7, and v8 formats"
-  spec.homepage = "https://github.com/tinychameleon/uuid-next"
+  spec.summary = "A fast Ruby implementation of UUID versions 4, 6, 7, and 8 🪪"
+  spec.description = "A fast Ruby implementation of UUID versions 4, 6, 7, and 8 🪪"
+  spec.homepage = "https://github.com/tinychameleon/uuidx"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.7.0"
 
@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["changelog_uri"] = File.join(spec.homepage, "blob/main/CHANGELOG.md")
   spec.metadata["bug_tracker_uri"] = File.join(spec.homepage, "issues")
-  spec.metadata["documentation_uri"] = "https://tinychameleon.github.io/uuid-next/"
+  spec.metadata["documentation_uri"] = "https://tinychameleon.github.io/uuidx/"
 
   spec.files = Dir["README.md", "CHANGELOG.md", "LICENSE.txt", "lib/**/*.rb"]
   spec.bindir = "exe"

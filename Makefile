@@ -15,7 +15,7 @@ ONESHELL:
 #======================================#
 
 SUPPORTED_RUBY_VERSIONS := 2.7.7  3.0.5  3.1.3  3.2.0
-DOCKER_TAG_PREFIX := uuid-next-lib:ruby-
+DOCKER_TAG_PREFIX := uuidx-lib:ruby-
 
 test-all: $(foreach version,$(SUPPORTED_RUBY_VERSIONS),test-$(version))
 	@echo

@@ -4,7 +4,7 @@ FROM ruby:$RUBY_VERSION
 
 WORKDIR /proj
 
-COPY uuid-next.gemspec Gemfile Gemfile.lock ./
+COPY uuidx.gemspec Gemfile Gemfile.lock ./
 RUN mkdir -p lib/uuid
 COPY lib/uuid/gem_version.rb lib/uuid/
 

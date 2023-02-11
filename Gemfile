@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in uuid-next.gemspec
+# Specify your gem's dependencies in uuidx.gemspec
 gemspec
 
 gem "benchmark-ips", "~> 2.10.0"
