@@ -58,8 +58,10 @@
       <li><a href="README_md.html#label-Using+Bundler">Using Bundler</a>
       <li><a href="README_md.html#label-Manual">Manual</a>
       <li><a href="README_md.html#label-Usage">Usage</a>
+      <li><a href="README_md.html#label-Monotonicity+-26+Batching">Monotonicity &amp; Batching</a>
       <li><a href="README_md.html#label-Advanced+Usage">Advanced Usage</a>
       <li><a href="README_md.html#label-UUID+v8">UUID v8</a>
+      <li><a href="README_md.html#label-Batching">Batching</a>
       <li><a href="README_md.html#label-Clock+Resolution">Clock Resolution</a>
       <li><a href="README_md.html#label-A+Note+on+Clock+Timings">A Note on Clock Timings</a>
       <li><a href="README_md.html#label-Performance">Performance</a>
@@ -76,6 +78,7 @@
     <a href="Uuid.html">Uuid</a>
 
     <ul>
+      <li><a href="Uuid.html#label-Monotonic+Batching">Monotonic Batching</a>
       <li><a href="Uuid.html#label-A+Note+on+Clock+Timings">A Note on Clock Timings</a>
     </ul>
   </li>
@@ -111,19 +114,39 @@
 <ul>
 
   <li class="method">
+    <a href="Uuid.html#method-c-batch">::batch</a>
+    &mdash;
+    <span class="container">Uuid</span>
+
+  <li class="method">
+    <a href="Uuid.html#method-c-batch_v4">::batch_v4</a>
+    &mdash;
+    <span class="container">Uuid</span>
+
+  <li class="method">
+    <a href="Uuid.html#method-c-batch_v6">::batch_v6</a>
+    &mdash;
+    <span class="container">Uuid</span>
+
+  <li class="method">
+    <a href="Uuid.html#method-c-batch_v7">::batch_v7</a>
+    &mdash;
+    <span class="container">Uuid</span>
+
+  <li class="method">
     <a href="Uuid.html#method-c-max_uuid">::max_uuid</a>
     &mdash;
     <span class="container">Uuid</span>
 
   <li class="method">
-    <a href="Uuid/Version6.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Uuid::Version6</span>
-
-  <li class="method">
     <a href="Uuid/Version4.html#method-c-new">::new</a>
     &mdash;
     <span class="container">Uuid::Version4</span>
+
+  <li class="method">
+    <a href="Uuid/Version6.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Uuid::Version6</span>
 
   <li class="method">
     <a href="Uuid/Version7.html#method-c-new">::new</a>
@@ -181,9 +204,9 @@
     <span class="container">Uuid::Version6</span>
 
   <li class="method">
-    <a href="Uuid/Version4.html#method-i-generate">#generate</a>
+    <a href="Uuid/Version6.html#method-i-generate">#generate</a>
     &mdash;
-    <span class="container">Uuid::Version4</span>
+    <span class="container">Uuid::Version6</span>
 
   <li class="method">
     <a href="Uuid/Version7.html#method-i-generate">#generate</a>
@@ -196,9 +219,9 @@
     <span class="container">Uuid::Version8</span>
 
   <li class="method">
-    <a href="Uuid/Version6.html#method-i-generate">#generate</a>
+    <a href="Uuid/Version4.html#method-i-generate">#generate</a>
     &mdash;
-    <span class="container">Uuid::Version6</span>
+    <span class="container">Uuid::Version4</span>
 
   <li class="method">
     <a href="Uuid/Version6.html#method-i-reset-21">#reset!</a>

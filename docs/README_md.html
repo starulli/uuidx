@@ -77,12 +77,14 @@
               <summary>      <a href="#label-Usage">Usage</a>
 </summary>
               <ul class="link-list" role="directory">
-                          <li>
+                          <li>      <a href="#label-Monotonicity+-26+Batching">Monotonicity &amp; Batching</a>
+          <li>
             <details open>
               <summary>      <a href="#label-Advanced+Usage">Advanced Usage</a>
 </summary>
               <ul class="link-list" role="directory">
                           <li>      <a href="#label-UUID+v8">UUID v8</a>
+          <li>      <a href="#label-Batching">Batching</a>
 
               </ul>
             </details>
@@ -168,6 +170,15 @@
 
 <p>This way you will get thread-safe state access per process without requiring IPC.</p>
 
+<h3 id="label-Monotonicity+-26+Batching">Monotonicity &amp; Batching<span><a href="#label-Monotonicity+-26+Batching">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The simple API provided by <code>Uuid</code> also supports monotonic batches. Provide the batch size and you will receive an array of UUID values back.</p>
+
+<pre class="ruby"><span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">batch_v4</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;2b54639d-e43e-489f-9c64-30ecdcac3c95&quot;, ...]</span>
+<span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">batch_v6</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;1eda9761-9f6f-6414-8c5f-fd61f1239907&quot;, ...]</span>
+<span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">batch_v7</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;01863d24-6d1e-78ba-92ee-6e80c79c4e28&quot;, ...]</span>
+</pre>
+
 <h3 id="label-Advanced+Usage">Advanced Usage<span><a href="#label-Advanced+Usage">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>If you require multiple generators you can drop below the simple API presented above to create generators directly.</p>
@@ -191,6 +202,13 @@
 <p>The definition class should implement the methods <code>custom_a</code>, <code>custom_b</code>, and <code>custom_c</code> in order to fill out the UUID data <a href="https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-8">according to the draft</a>.</p>
 
 <p>See the <a href="https://tinychameleon.github.io/uuidx/Uuid/Version8.html">documentation for Version8</a> for precise details.</p>
+
+<h4 id="label-Batching">Batching<span><a href="#label-Batching">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>Any custom UUID v8 generators can also participate in thread-safe batching by using the <code>batch</code> method.</p>
+
+<pre class="ruby"><span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">batch</span>(<span class="ruby-identifier">v8</span>, <span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;&lt;a v8 uuid&gt;&quot;, ...]</span>
+</pre>
 
 <h3 id="label-Clock+Resolution">Clock Resolution<span><a href="#label-Clock+Resolution">&para;</a> <a href="#top">&uarr;</a></span></h3>
 

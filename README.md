@@ -59,6 +59,16 @@ end
 This way you will get thread-safe state access per process without requiring
 IPC.
 
+### Monotonicity & Batching
+The simple API provided by `Uuid` also supports monotonic batches. Provide the
+batch size and you will receive an array of UUID values back.
+
+```ruby
+Uuid.batch_v4(10) # => ["2b54639d-e43e-489f-9c64-30ecdcac3c95", ...]
+Uuid.batch_v6(10) # => ["1eda9761-9f6f-6414-8c5f-fd61f1239907", ...]
+Uuid.batch_v7(10) # => ["01863d24-6d1e-78ba-92ee-6e80c79c4e28", ...]
+```
+
 ### Advanced Usage
 If you require multiple generators you can drop below the simple API presented
 above to create generators directly.
@@ -89,6 +99,14 @@ The definition class should implement the methods `custom_a`, `custom_b`, and
 `custom_c` in order to fill out the UUID data [according to the draft](https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-8).
 
 See the [documentation for Version8](https://tinychameleon.github.io/uuidx/Uuid/Version8.html) for precise details.
+
+#### Batching
+Any custom UUID v8 generators can also participate in thread-safe batching by using
+the `batch` method.
+
+```ruby
+Uuid.batch(v8, 10) # => ["<a v8 uuid>", ...]
+```
 
 ### Clock Resolution
 If you have need to verify the clock resolution for UUID v6 or v7 you can call

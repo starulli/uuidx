@@ -20,6 +20,17 @@ require_relative "uuid/version8"
 # See the Version4, Version6, and Version7 classes for details on how to create
 # generators manually.
 #
+# ===== Monotonic Batching
+# The simple API also provides thread-safe monotonic batch methods which expect
+# an amount.
+#
+#   Uuid.batch_v4(10) # => ["2b54639d-e43e-489f-9c64-30ecdcac3c95", ...]
+#   Uuid.batch_v6(10) # => ["1eda9761-9f6f-6414-8c5f-fd61f1239907", ...]
+#   Uuid.batch_v7(10) # => ["01863d24-6d1e-78ba-92ee-6e80c79c4e28", ...]
+#
+# Monotonicity has little meaning with UUID v4, but the batches are ordered for
+# consistency.
+#
 # ===== A Note on Clock Timings
 # This library uses the +Process::CLOCK_REALTIME+ clock ID to obtain the current
 # time. While the specification allows for implementations to manipulate time
@@ -69,6 +80,30 @@ module Uuid
     r
   end
 
+  # Create a batch of UUID v4 values using the default generator.
+  def self.batch_v4(amount)
+    @lock4.lock
+    r = batch(@uuid4, amount)
+    @lock4.unlock
+    r
+  end
+
+  # Create a batch of UUID v6 values using the default generator.
+  def self.batch_v6(amount)
+    @lock6.lock
+    r = batch(@uuid6, amount)
+    @lock6.unlock
+    r
+  end
+
+  # Create a batch of UUID v7 values using the default generator.
+  def self.batch_v7(amount)
+    @lock7.lock
+    r = batch(@uuid7, amount)
+    @lock7.unlock
+    r
+  end
+
   # Reset the UUID v4 default generator.
   def self.reset_v4!
     @lock4 = Mutex.new
@@ -85,6 +120,15 @@ module Uuid
   def self.reset_v7!
     @lock7 = Mutex.new
     @uuid7 = Version7.new
+  end
+
+  # Create a batch of UUIDs from a generator.
+  #
+  # This can be useful for custom Version8 generators.
+  def self.batch(generator, amount)
+    s = Set.new
+    s << generator.generate while s.length < amount
+    s.sort
   end
 
   reset_v4!

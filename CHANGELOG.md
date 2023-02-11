@@ -2,6 +2,7 @@
 
 - Main documentation written
 - Add type signatures
+- Add monotonic batch support to simple API.
 
 # Stable Releases
 
