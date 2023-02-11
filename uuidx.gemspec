@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.metadata["bug_tracker_uri"] = File.join(spec.homepage, "issues")
   spec.metadata["documentation_uri"] = "https://tinychameleon.github.io/uuidx/"
 
-  spec.files = Dir["README.md", "CHANGELOG.md", "LICENSE.txt", "lib/**/*.rb"]
+  spec.files = Dir["README.md", "CHANGELOG.md", "LICENSE.txt", "lib/**/*.rb", "sig/**/*.rbs"]
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
