@@ -28,6 +28,40 @@ module Uuid
     "ffffffff-ffff-ffff-ffff-ffffffffffff"
   end
 
+  # Generate a new UUID v4 value using the default generator.
+  def self.v4
+    @uuid4.generate
+  end
+
+  # Generate a new UUID v6 value using the default generator.
+  def self.v6
+    @uuid6.generate
+  end
+
+  # Generate a new UUID v7 value using the default generator.
+  def self.v7
+    @uuid7.generate
+  end
+
+  # Reset the UUID v4 default generator.
+  def self.reset_v4!
+    @uuid4 = Version4.new
+  end
+
+  # Reset the UUID v6 default generator.
+  def self.reset_v6!
+    @uuid6 = Version6.new
+  end
+
+  # Reset the UUID v7 default generator.
+  def self.reset_v7!
+    @uuid7 = Version7.new
+  end
+
+  reset_v4!
+  reset_v6!
+  reset_v7!
+
   # :nodoc:
   def self.format(value)
     b = +value.to_s(16).rjust(32, "0")
