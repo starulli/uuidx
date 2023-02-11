@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "set"
 require_relative "uuid/gem_version"
 require_relative "uuid/errors"
 require_relative "uuid/version4"
@@ -58,50 +59,32 @@ module Uuid
 
   # Generate a new UUID v4 value using the default generator.
   def self.v4
-    @lock4.lock
-    r = @uuid4.generate
-    @lock4.unlock
-    r
+    @lock4.synchronize { @uuid4.generate }
   end
 
   # Generate a new UUID v6 value using the default generator.
   def self.v6
-    @lock6.lock
-    r = @uuid6.generate
-    @lock6.unlock
-    r
+    @lock6.synchronize { @uuid6.generate }
   end
 
   # Generate a new UUID v7 value using the default generator.
   def self.v7
-    @lock7.lock
-    r = @uuid7.generate
-    @lock7.unlock
-    r
+    @lock7.synchronize { @uuid7.generate }
   end
 
   # Create a batch of UUID v4 values using the default generator.
   def self.batch_v4(amount)
-    @lock4.lock
-    r = batch(@uuid4, amount)
-    @lock4.unlock
-    r
+    @lock4.synchronize { batch(@uuid4, amount) }
   end
 
   # Create a batch of UUID v6 values using the default generator.
   def self.batch_v6(amount)
-    @lock6.lock
-    r = batch(@uuid6, amount)
-    @lock6.unlock
-    r
+    @lock6.synchronize { batch(@uuid6, amount) }
   end
 
   # Create a batch of UUID v7 values using the default generator.
   def self.batch_v7(amount)
-    @lock7.lock
-    r = batch(@uuid7, amount)
-    @lock7.unlock
-    r
+    @lock7.synchronize { batch(@uuid7, amount) }
   end
 
   # Reset the UUID v4 default generator.
