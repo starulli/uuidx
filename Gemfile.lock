@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    uuid-next (0.7.0)
+    uuid-next (0.8.0)
 
 GEM
   remote: https://rubygems.org/

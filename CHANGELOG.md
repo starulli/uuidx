@@ -2,6 +2,11 @@
 
 ## Pre-release
 
+### 0.8.0 &ndash; 2023-02-10
+- Add simple Uuid generation API
+- Generator classes are now lock-free
+- Remove UUID value type
+
 ### 0.7.0 &ndash; 2023-02-10
 - Generator APIs now return opaque string values for UUIDs
 - Add faster UUID v4 implementation
