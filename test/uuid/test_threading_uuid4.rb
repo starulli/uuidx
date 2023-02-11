@@ -2,13 +2,13 @@
 
 require "test_helper"
 
-class TestThreadingUuid7 < Minitest::Test
+class TestThreadingUuid4 < Minitest::Test
   THREAD_COUNT = 20
   TOTAL_UUIDS = 5_000_000
   UUID_COUNT = TOTAL_UUIDS / THREAD_COUNT
 
   def setup
-    @gen = Uuid::Version7.new
+    @gen = Uuid::Version4.new
   end
 
   def generate_uuids

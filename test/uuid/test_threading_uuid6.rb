@@ -13,11 +13,13 @@ class TestThreadingUuid6 < Minitest::Test
 
   def generate_uuids
     Thread.new do
-      (1..UUID_COUNT).map { @gen.generate.to_s }
+      (1..UUID_COUNT).map { @gen.generate }
     end
   end
 
-  def skip_clock_sequence_is_thread_safe
+  def test_clock_sequence_is_thread_safe
+    skip "do not run slow tests by default"
+
     uuids = (1..THREAD_COUNT).map { generate_uuids }.map(&:join).map(&:value).flatten.uniq
 
     assert_equal TOTAL_UUIDS, uuids.length
