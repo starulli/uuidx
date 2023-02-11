@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Uuid::Version7 - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link">Object
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-c-verify_clock_resolution-21">::verify_clock_resolution!</a>
+    <li ><a href="#method-i-generate">#generate</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Uuid::Version7">
+  <h1 id="class-Uuid::Version7" class="class">
+    class Uuid::Version7
+  </h1>
+
+  <section class="description">
+    
+<p>UUID Version 7 defined by the <a href="https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-7">RFC 4122 BIS-01 Draft</a>.</p>
+
+<p>To construct a new UUID v7 value create a generator, then use <a href="Version7.html#method-i-generate"><code>generate</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">g</span> = <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">Version7</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">g</span>.<span class="ruby-identifier">generate</span> <span class="ruby-comment"># =&gt; &quot;01863d24-6d1e-78ba-92ee-6e80c79c4e28&quot;</span>
+</pre>
+
+<p>The implementation will cache 640 bytes of random data from <code>SecureRandom</code> to facilitate faster construction.</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Construct a UUID v7 generator.</p>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/uuid/version7.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-ivar">@pool</span> = []
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-verify_clock_resolution-21" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">verify_clock_resolution!</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Verify that the clock resolution is capable of 1ms resolution.</p>
+
+<p>Raises <a href="ClockResolutionError.html"><code>ClockResolutionError</code></a> when the clock resolution is insufficient.</p>
+
+          <div class="method-source-code" id="verify_clock_resolution-21-source">
+            <pre><span class="ruby-comment"># File lib/uuid/version7.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">verify_clock_resolution!</span>
+  <span class="ruby-identifier">ms_res</span> = <span class="ruby-constant">Process</span>.<span class="ruby-identifier">clock_getres</span>(<span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-constant">CLOCK_REALTIME</span>, <span class="ruby-value">:millisecond</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ClockResolutionError</span>, <span class="ruby-node">&quot;Detected #{ms_res}ms resolution, need &lt;= 1ms&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ms_res</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-generate" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">generate</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Construct a UUID v7 value.</p>
+
+          <div class="method-source-code" id="generate-source">
+            <pre><span class="ruby-comment"># File lib/uuid/version7.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate</span>
+  <span class="ruby-ivar">@pool</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">bytes</span>(<span class="ruby-constant">NEEDED_BYTES</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-constant">UNPACK_FORMAT</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@pool</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> = <span class="ruby-ivar">@pool</span>.<span class="ruby-identifier">pop</span>(<span class="ruby-value">2</span>)
+  <span class="ruby-identifier">ts</span> = <span class="ruby-constant">Process</span>.<span class="ruby-identifier">clock_gettime</span>(<span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-constant">CLOCK_REALTIME</span>, <span class="ruby-value">:millisecond</span>) <span class="ruby-operator">&amp;</span> <span class="ruby-constant">TS_MASK</span>
+  <span class="ruby-identifier">high</span> = (<span class="ruby-identifier">ts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">TS_SHIFT</span>) <span class="ruby-operator">|</span> (<span class="ruby-identifier">a</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">RAND_A_MASK</span>)
+
+  <span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">format</span>(<span class="ruby-constant">VERSION_VARIANT</span> <span class="ruby-operator">|</span> (<span class="ruby-identifier">high</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">HIGH_SHIFT</span>) <span class="ruby-operator">|</span> (<span class="ruby-identifier">b</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">RAND_B_MASK</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

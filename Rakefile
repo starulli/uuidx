@@ -15,7 +15,7 @@ RuboCop::RakeTask.new
 
 RDoc::Task.new do |r|
   r.main = "README.md"
-  r.rdoc_dir = "doc"
+  r.rdoc_dir = "docs"
   r.rdoc_files = Dir["README.md", "LICENSE.txt", "CHANGELOG.md", "lib/**/*.rb"]
 end
 
