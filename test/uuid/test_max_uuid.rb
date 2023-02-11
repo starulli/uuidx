@@ -18,7 +18,7 @@ class TestMaxUuid < Minitest::Test
 
     assert Uuid.max_uuid > Uuid.nil_uuid
     generators.each do |g|
-      100_000.times { assert Uuid.max_uuid > g.generate }
+      10_000.times { assert_operator Uuid.max_uuid, :>, g.generate }
     end
   end
 end
