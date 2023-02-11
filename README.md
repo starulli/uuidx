@@ -143,23 +143,24 @@ Ruby version
 
 and is run on a Macbook Pro with an M1 Max CPU.
 
-    ❯ bundle exec ruby test/benchmarks/simple_api.rb
+    ❯ bundle exec ruby test/benchmarks/simple_api.rb 
     Warming up --------------------------------------
-                  stdlib    62.055k i/100ms
-                   uuid4   108.502k i/100ms
-                   uuid6   114.782k i/100ms
-                   uuid7   104.576k i/100ms
+                  stdlib    60.617k i/100ms
+                   uuid4   106.927k i/100ms
+                   uuid6   111.417k i/100ms
+                   uuid7   103.551k i/100ms
     Calculating -------------------------------------
-                  stdlib    628.493k (± 0.2%) i/s -      3.165M in   5.035575s
-                   uuid4      1.084M (± 1.1%) i/s -      5.425M in   5.005244s
-                   uuid6      1.149M (± 0.2%) i/s -      5.854M in   5.096869s
-                   uuid7      1.052M (± 0.8%) i/s -      5.333M in   5.071797s
+                  stdlib    626.957k (± 0.3%) i/s -      3.152M in   5.027633s
+                   uuid4      1.077M (± 1.2%) i/s -      5.453M in   5.065726s
+                   uuid6      1.121M (± 0.2%) i/s -      5.682M in   5.067392s
+                   uuid7      1.027M (± 1.3%) i/s -      5.178M in   5.041666s
     
     Comparison:
-                   uuid6:  1148528.3 i/s
-                   uuid4:  1084023.7 i/s - 1.06x  (± 0.00) slower
-                   uuid7:  1051645.3 i/s - 1.09x  (± 0.00) slower
-                  stdlib:   628492.6 i/s - 1.83x  (± 0.00) slower
+                   uuid6:  1121344.6 i/s
+                   uuid4:  1076662.4 i/s - 1.04x  (± 0.00) slower
+                   uuid7:  1027127.8 i/s - 1.09x  (± 0.00) slower
+                  stdlib:   626957.1 i/s - 1.79x  (± 0.00) slower
+
 
 As reported, the `stdlib` version of `SecureRandom.uuid` is at least 1.70x
 slower than the simple API implementation of UUID v4.
