@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>RDoc Documentation</title>
+<title>uuidx 0.8.0 documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -90,17 +90,17 @@
 
 <h2 id="label-What-27s+in+the+box-3F">What’s in the box?<span><a href="#label-What-27s+in+the+box-3F">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
-<p>✅ Simple usage documentation written to get started fast. Check it out!</p>
+<p>✅ Simple usage documentation written to get started fast. <a href="#usage">30 seconds and you’re off.</a></p>
 
-<p>⚡ A pretty fast implementation of Crockford32 in pure ruby. Check it out!</p>
+<p>📚 API documentation for the library. <a href="https://tinychameleon.github.io/uuidx/">Read the docs.</a></p>
 
-<p>📚 API documentation for the library. Check it out!</p>
+<p>⚡ A reasonably fast, zero dependency implementation of the new UUID standards.</p>
 
-<p>🤖 RBS types for your type checking wants. Check it out!</p>
+<p>🤖 RBS types for your type checking wants. <a href="./sig">Typed goodness.</a></p>
 
-<p>💎 Tests against many Ruby versions. Check it out!</p>
+<p>💎 Tests against Ruby 2.7, 3.0, 3.1, and 3.2.</p>
 
-<p>🔒 MFA protection on all gem owners. Check it out!</p>
+<p>🔒 MFA protection on gem owners.</p>
 <hr>
 
 <h2 id="label-Installation">Installation<span><a href="#label-Installation">&para;</a> <a href="#top">&uarr;</a></span></h2>
@@ -158,7 +158,24 @@
 
 <p>The definition class should implement the methods <code>custom_a</code>, <code>custom_b</code>, and <code>custom_c</code> in order to fill out the UUID data <a href="https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-8">according to the draft</a>.</p>
 
-<p>See the <a href="./">documentation for Version8</a> for precise details.</p>
+<p>See the <a href="https://tinychameleon.github.io/uuidx/Uuid/Version8.html">documentation for Version8</a> for precise details.</p>
+
+<h3 id="label-Clock+Resolution">Clock Resolution<span><a href="#label-Clock+Resolution">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>If you have need to verify the clock resolution for UUID v6 or v7 you can call the <code>verify_clock_resolution!</code> method on either class. A <code>ClockResolutionError</code> is raised if the system has insufficient precision.</p>
+
+<pre class="ruby"><span class="ruby-keyword">begin</span>
+  <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">Version6</span>.<span class="ruby-identifier">verify_clock_resolution!</span> <span class="ruby-comment"># or Uuid::Version7</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">ClockResolutionError</span>
+  <span class="ruby-comment"># ...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>The API documentation has details about what the clock resolution must be for each of the UUID versions. See the <a href="https://tinychameleon.github.io/uuidx/Uuid/Version6.html">Version 6</a> and <a href="https://tinychameleon.github.io/uuidx/Uuid/Version7.html">Version 7</a> documentation for details.</p>
+
+<h3 id="label-A+Note+on+Clock+Timings">A Note on Clock Timings<span><a href="#label-A+Note+on+Clock+Timings">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The API documentation contains specific details around how the implementations deal with clock drift. See the <a href="https://tinychameleon.github.io/uuidx/Uuid.html">Uuid</a>, <a href="https://tinychameleon.github.io/uuidx/Uuid/Version6.html">Version 6</a>, and <a href="https://tinychameleon.github.io/uuidx/Uuid/Version7.html">Version 7</a> documentation for more information.</p>
 
 <h2 id="label-Performance">Performance<span><a href="#label-Performance">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
@@ -200,15 +217,15 @@ Comparison:
 
 <p>To release a new version:</p>
 <ol><li>
-<p>update the version number in <code>lib/uuid/gem_version.rb</code></p>
-</li><li>
-<p>run <code>bundle install</code> to update the <code>Gemfile.lock</code></p>
-</li><li>
 <p>ensure the documentation and changelog are ready</p>
 </li><li>
 <p>run <code>bundle exec rake rdoc</code> to generate the new documentation and commit it</p>
 </li><li>
-<p>create a release commit</p>
+<p>update the version number in <code>lib/uuid/gem_version.rb</code></p>
+</li><li>
+<p>run <code>bundle install</code> to update the <code>Gemfile.lock</code></p>
+</li><li>
+<p>create a release commit with the version updates</p>
 </li><li>
 <p>run <code>bundle exec rake release</code> to tag and push the version to RubyGems</p>
 </li></ol>

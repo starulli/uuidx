@@ -15,6 +15,21 @@ module Uuid
   #
   # Generation is thread-safe, but if you are using multi-process clusters you should call #reset! at the start
   # of each process to reduce the chance of two processes generating the same value.
+  #
+  # If you have need to make sure that the clock resolution is sufficient for the v6 specification
+  # you can call ::verify_clock_resolution! and handle the ClockResolutionError as you see fit.
+  #
+  #   begin
+  #     Uuid::Version6.verify_clock_resolution!
+  #   rescue Uuid::ClockResolutionError
+  #     # ...
+  #   end
+  #
+  # The necessary clock resolution for v6 is 100ns.
+  #
+  # ===== A Note on Clock Timings
+  # To combat clock drift, leap-second smearing, and other clock value changes that can appear without
+  # requiring additional compute cost this implementation always increments the clock sequence number.
   class Version6
     VERSION_VARIANT = (0x6 << 76) + (0x2 << 62) # :nodoc:
     GREGORIAN_MICROSECOND_TENTHS = 122_192_928_000_000_000 # :nodoc:

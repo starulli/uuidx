@@ -7,11 +7,11 @@
 
 ✅ Simple usage documentation written to get started fast. [30 seconds and you're off.](#usage)
 
-📚 API documentation for the library. [Read the docs.](https://tinychameleon.github.io/uuidx/#label-Usage)
+📚 API documentation for the library. [Read the docs.](https://tinychameleon.github.io/uuidx/)
 
 ⚡ A reasonably fast, zero dependency implementation of the new UUID standards.
 
-🤖 RBS types for your type checking wants.
+🤖 RBS types for your type checking wants. [Typed goodness.](./sig)
 
 💎 Tests against Ruby 2.7, 3.0, 3.1, and 3.2.
 
@@ -89,6 +89,33 @@ The definition class should implement the methods `custom_a`, `custom_b`, and
 `custom_c` in order to fill out the UUID data [according to the draft](https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-8).
 
 See the [documentation for Version8](https://tinychameleon.github.io/uuidx/Uuid/Version8.html) for precise details.
+
+### Clock Resolution
+If you have need to verify the clock resolution for UUID v6 or v7 you can call
+the `verify_clock_resolution!` method on either class. A `ClockResolutionError`
+is raised if the system has insufficient precision.
+
+```ruby
+begin
+  Uuid::Version6.verify_clock_resolution! # or Uuid::Version7
+rescue Uuid::ClockResolutionError
+  # ...
+end
+```
+
+The API documentation has details about what the clock resolution must be for
+each of the UUID versions. See the
+[Version 6](https://tinychameleon.github.io/uuidx/Uuid/Version6.html) and
+[Version 7](https://tinychameleon.github.io/uuidx/Uuid/Version7.html)
+documentation for details.
+
+### A Note on Clock Timings
+The API documentation contains specific details around how the implementations
+deal with clock drift. See the
+[Uuid](https://tinychameleon.github.io/uuidx/Uuid.html),
+[Version 6](https://tinychameleon.github.io/uuidx/Uuid/Version6.html), and
+[Version 7](https://tinychameleon.github.io/uuidx/Uuid/Version7.html)
+documentation for more information.
 
 ## Performance
 This performance data was captured using `benchmark/ips`. It uses the following

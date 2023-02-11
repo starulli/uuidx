@@ -7,9 +7,26 @@ require_relative "uuid/version6"
 require_relative "uuid/version7"
 require_relative "uuid/version8"
 
-# NOTE: clock slewing is OS dependent. We use Process::CLOCK_REALTIME.
-# NOTE: clock resolution can be verified for v6 and v7.
-# :include: README.md
+# The Uuid module contains a simple API to generate v4, v6, and v7 UUIDs
+# without needing to create generators manually.
+#
+# The simple API is exposed as a set of methods ::v4, ::v6, and ::v7 which
+# handle thread-safety and generator creation.
+#
+#   Uuid.v4 # => "2b54639d-e43e-489f-9c64-30ecdcac3c95"
+#   Uuid.v6 # => "1eda9761-9f6f-6414-8c5f-fd61f1239907"
+#   Uuid.v7 # => "01863d24-6d1e-78ba-92ee-6e80c79c4e28"
+#
+# See the Version4, Version6, and Version7 classes for details on how to create
+# generators manually.
+#
+# ===== A Note on Clock Timings
+# This library uses the +Process::CLOCK_REALTIME+ clock ID to obtain the current
+# time. While the specification allows for implementations to manipulate time
+# values, this library does not. Any system-based smearing or drift will appear
+# within the timestamp values.
+#
+# See the Version6 and Version7 documentation for manifestation details.
 module Uuid
   # The nil UUID as defined by
   # {§5.10 of RFC 4122 BIS-01}[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-nil-uuid].

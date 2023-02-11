@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Uuid::Version7 - RDoc Documentation</title>
+<title>class Uuid::Version7 - uuidx 0.8.0 documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -98,6 +98,23 @@
 
 <p>The implementation will cache 640 bytes of random data from <code>SecureRandom</code> to facilitate faster construction.</p>
 
+<p>If you have need to make sure that the clock resolution is sufficient for the v7 specification you can call <a href="Version7.html#method-c-verify_clock_resolution-21"><code>::verify_clock_resolution!</code></a> and handle the <a href="ClockResolutionError.html"><code>ClockResolutionError</code></a> as you see fit.</p>
+
+<pre class="ruby"><span class="ruby-keyword">begin</span>
+  <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">Version7</span>.<span class="ruby-identifier">verify_clock_resolution!</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">ClockResolutionError</span>
+  <span class="ruby-comment"># ...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>The necessary clock resolution for v6 is 1ms.</p>
+
+<h5 id="class-Uuid::Version7-label-A+Note+on+Clock+Timings">A Note on Clock Timings<span><a href="#class-Uuid::Version7-label-A+Note+on+Clock+Timings">&para;</a> <a href="#top">&uarr;</a></span></h5>
+
+<p>To combat clock drift, leap-second smearing, and other clock value changes that can appear without requiring additional compute cost this implementation relies on secure random data to have sufficient variation such that all generated UUIDs within 1ms have a low probability of collision.</p>
+
+<p>For a 0.001% chance of collision, the 74 bits of random data will require between 6.1×10^6 and 4.0×10^11 UUIDs to be generated in 1ms.</p>
+
   </section>
 
   <section id="5Buntitled-5D" class="documentation-section">
@@ -124,7 +141,7 @@
           <p>Construct a UUID v7 generator.</p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/uuid/version7.rb, line 26</span>
+            <pre><span class="ruby-comment"># File lib/uuid/version7.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
   <span class="ruby-ivar">@pool</span> = []
 <span class="ruby-keyword">end</span></pre>
@@ -149,7 +166,7 @@
 <p>Raises <a href="ClockResolutionError.html"><code>ClockResolutionError</code></a> when the clock resolution is insufficient.</p>
 
           <div class="method-source-code" id="verify_clock_resolution-21-source">
-            <pre><span class="ruby-comment"># File lib/uuid/version7.rb, line 43</span>
+            <pre><span class="ruby-comment"># File lib/uuid/version7.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">verify_clock_resolution!</span>
   <span class="ruby-identifier">ms_res</span> = <span class="ruby-constant">Process</span>.<span class="ruby-identifier">clock_getres</span>(<span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-constant">CLOCK_REALTIME</span>, <span class="ruby-value">:millisecond</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">ClockResolutionError</span>, <span class="ruby-node">&quot;Detected #{ms_res}ms resolution, need &lt;= 1ms&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ms_res</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
@@ -182,7 +199,7 @@
           <p>Construct a UUID v7 value.</p>
 
           <div class="method-source-code" id="generate-source">
-            <pre><span class="ruby-comment"># File lib/uuid/version7.rb, line 31</span>
+            <pre><span class="ruby-comment"># File lib/uuid/version7.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate</span>
   <span class="ruby-ivar">@pool</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">bytes</span>(<span class="ruby-constant">NEEDED_BYTES</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-constant">UNPACK_FORMAT</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@pool</span>.<span class="ruby-identifier">empty?</span>
   <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> = <span class="ruby-ivar">@pool</span>.<span class="ruby-identifier">pop</span>(<span class="ruby-value">2</span>)
