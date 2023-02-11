@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    uuidx (0.8.0)
+    uuidx (0.9.0)
 
 GEM
   remote: https://rubygems.org/

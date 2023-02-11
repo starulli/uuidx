@@ -1,17 +1,16 @@
 # Unreleased
 
-- Main documentation written
-- Add type signatures
-- Add monotonic batch support to simple API.
-
 # Stable Releases
 
 ## 1.0.0 &ndash; ???
 
 # Alpha Releases
 
-## 0.9.0 &ndash; 2023-02-10
+## 0.9.0 &ndash; 2023-02-11
 - Swap gem name to shorter uuidx
+- Main documentation written
+- Add type signatures
+- Add monotonic batch support to simple API.
 
 ## 0.8.0 &ndash; 2023-02-10
 - Add simple Uuid generation API
