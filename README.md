@@ -1,5 +1,6 @@
 <h1 align="center">uuidx</h1>
 <p align="center">Fast Ruby implementations of UUID versions 4, 6, 7, and 8 🪪</p> 
+<p align="center"><a href="https://badge.fury.io/rb/uuidx"><img src="https://badge.fury.io/rb/uuidx.svg" alt="Gem Version" height="18"></a></p>
 
 ---
 
