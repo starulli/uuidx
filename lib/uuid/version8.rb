@@ -30,7 +30,7 @@ module Uuid
   #   g.generate # => "00000000-0001-8002-8000-000000000003"
   #
   # The implementation will truncate the results of each generator module method so that they abide by the bit lengths
-  # of the UUID specification.
+  # of the UUID specification. The thread safety of UUID v8 depends entirely on your implementation.
   #
   # There is no default implementation of UUID v8.
   class Version8

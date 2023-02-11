@@ -26,25 +26,22 @@ module Uuid
     TS_HIGH_MID_MASK = 0xffffffff_ffff0000 # :nodoc:
     TS_MASK_SHIFT = 4 # :nodoc:
     TS_POSITIONAL_SHIFT = 64 # :nodoc:
-    NODE_ID_MASK   = 0xffffffffffff # :nodoc:
-    NODE_ID_MC_BIT = 0x010000000000 # :nodoc:
+    NODE_ID_MASK   = 0xffff_ffffffff # :nodoc:
+    NODE_ID_MC_BIT = 0x0100_00000000 # :nodoc:
 
     # Construct a new UUID v6 generator.
     def initialize
-      @seq_lock = Mutex.new
       reset!
     end
 
     # Construct a UUID v6 value.
     def generate
-      seq = @seq_lock.synchronize do
-        @clock_sequence = (@clock_sequence + CLOCK_SEQ_INCREMENT) & CLOCK_SEQ_MASK
-      end
+      @clock_sequence = (@clock_sequence + CLOCK_SEQ_INCREMENT) & CLOCK_SEQ_MASK
 
       ts = GREGORIAN_MICROSECOND_TENTHS + (Process.clock_gettime(Process::CLOCK_REALTIME, :nanosecond) / TS_NS_FACTOR)
       ts = ((ts << TS_MASK_SHIFT) & TS_HIGH_MID_MASK) | (ts & TS_LOW_MASK)
 
-      Uuid.format(VERSION_VARIANT | (ts << TS_POSITIONAL_SHIFT) | seq | @node_id)
+      Uuid.format(VERSION_VARIANT | (ts << TS_POSITIONAL_SHIFT) | @clock_sequence | @node_id)
     end
 
     # Reset the generator with a new random node ID and clock sequence.

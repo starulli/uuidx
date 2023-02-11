@@ -23,15 +23,12 @@ module Uuid
     # Construct a UUID v4 generator.
     def initialize
       @pool = []
-      @pool_lock = Mutex.new
     end
 
     # Construct a UUID v4 value.
     def generate
-      ab, c = @pool_lock.synchronize do
-        @pool = SecureRandom.bytes(NEEDED_BYTES).unpack(UNPACK_FORMAT) if @pool.empty?
-        @pool.pop(2)
-      end
+      @pool = SecureRandom.bytes(NEEDED_BYTES).unpack(UNPACK_FORMAT) if @pool.empty?
+      ab, c = @pool.pop(2)
 
       Uuid.format(VERSION_VARIANT | ((ab & RANDOM_AB_MASK) << AB_SHIFT) | (c & RANDOM_C_MASK))
     end

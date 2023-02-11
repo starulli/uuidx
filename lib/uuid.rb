@@ -30,31 +30,43 @@ module Uuid
 
   # Generate a new UUID v4 value using the default generator.
   def self.v4
-    @uuid4.generate
+    @lock4.lock
+    r = @uuid4.generate
+    @lock4.unlock
+    r
   end
 
   # Generate a new UUID v6 value using the default generator.
   def self.v6
-    @uuid6.generate
+    @lock6.lock
+    r = @uuid6.generate
+    @lock6.unlock
+    r
   end
 
   # Generate a new UUID v7 value using the default generator.
   def self.v7
-    @uuid7.generate
+    @lock7.lock
+    r = @uuid7.generate
+    @lock7.unlock
+    r
   end
 
   # Reset the UUID v4 default generator.
   def self.reset_v4!
+    @lock4 = Mutex.new
     @uuid4 = Version4.new
   end
 
   # Reset the UUID v6 default generator.
   def self.reset_v6!
+    @lock6 = Mutex.new
     @uuid6 = Version6.new
   end
 
   # Reset the UUID v7 default generator.
   def self.reset_v7!
+    @lock7 = Mutex.new
     @uuid7 = Version7.new
   end
 

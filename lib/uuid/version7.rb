@@ -25,15 +25,12 @@ module Uuid
     # Construct a UUID v7 generator.
     def initialize
       @pool = []
-      @pool_lock = Mutex.new
     end
 
     # Construct a UUID v7 value.
     def generate
-      a, b = @pool_lock.synchronize do
-        @pool = SecureRandom.bytes(NEEDED_BYTES).unpack(UNPACK_FORMAT) if @pool.empty?
-        @pool.pop(2)
-      end
+      @pool = SecureRandom.bytes(NEEDED_BYTES).unpack(UNPACK_FORMAT) if @pool.empty?
+      a, b = @pool.pop(2)
       ts = Process.clock_gettime(Process::CLOCK_REALTIME, :millisecond) & TS_MASK
       high = (ts << TS_SHIFT) | (a & RAND_A_MASK)
 
