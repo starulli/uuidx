@@ -101,8 +101,8 @@ The definition class should implement the methods `custom_a`, `custom_b`, and
 See the [documentation for Version8](https://tinychameleon.github.io/uuidx/Uuid/Version8.html) for precise details.
 
 #### Batching
-Any custom UUID v8 generators can also participate in thread-safe batching by using
-the `batch` method.
+Any custom UUID v8 generators can also participate in batching by using the
+`batch` method. The thread-safety of this depends on your UUID v8 implementation.
 
 ```ruby
 Uuid.batch(v8, 10) # => ["<a v8 uuid>", ...]
