@@ -8,14 +8,14 @@ class TestUuidSimpleApi < Minitest::Test
   end
 
   def test_uuid4_can_be_made
-    assert_match uuid_regex(4), Uuid.v4
+    assert_match uuid_regex(4), Uuidx.v4
   end
 
   def test_uuid6_can_be_made
-    assert_match uuid_regex(6), Uuid.v6
+    assert_match uuid_regex(6), Uuidx.v6
   end
 
   def test_uuid7_can_be_made
-    assert_match uuid_regex(7), Uuid.v7
+    assert_match uuid_regex(7), Uuidx.v7
   end
 end

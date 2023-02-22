@@ -39,9 +39,9 @@ the library and call the associated method.
 ```ruby
 require "uuidx"
 
-Uuid.v4 # => "2b54639d-e43e-489f-9c64-30ecdcac3c95"
-Uuid.v6 # => "1eda9761-9f6f-6414-8c5f-fd61f1239907"
-Uuid.v7 # => "01863d24-6d1e-78ba-92ee-6e80c79c4e28"
+Uuidx.v4 # => "2b54639d-e43e-489f-9c64-30ecdcac3c95"
+Uuidx.v6 # => "1eda9761-9f6f-6414-8c5f-fd61f1239907"
+Uuidx.v7 # => "01863d24-6d1e-78ba-92ee-6e80c79c4e28"
 ```
 
 These methods all use default generators and are thread-safe. However, if you
@@ -51,9 +51,9 @@ the generators you are using when each child process starts.
 ```ruby
 # Puma example that resets all default generators.
 on_worker_boot do
-  Uuid.reset_v4!
-  Uuid.reset_v6!
-  Uuid.reset_v7!
+  Uuidx.reset_v4!
+  Uuidx.reset_v6!
+  Uuidx.reset_v7!
 end
 ```
 
@@ -61,13 +61,13 @@ This way you will get thread-safe state access per process without requiring
 IPC.
 
 ### Monotonicity & Batching
-The simple API provided by `Uuid` also supports monotonic batches. Provide the
+The simple API provided by `Uuidx` also supports monotonic batches. Provide the
 batch size and you will receive an array of UUID values back.
 
 ```ruby
-Uuid.batch_v4(10) # => ["2b54639d-e43e-489f-9c64-30ecdcac3c95", ...]
-Uuid.batch_v6(10) # => ["1eda9761-9f6f-6414-8c5f-fd61f1239907", ...]
-Uuid.batch_v7(10) # => ["01863d24-6d1e-78ba-92ee-6e80c79c4e28", ...]
+Uuidx.batch_v4(10) # => ["2b54639d-e43e-489f-9c64-30ecdcac3c95", ...]
+Uuidx.batch_v6(10) # => ["1eda9761-9f6f-6414-8c5f-fd61f1239907", ...]
+Uuidx.batch_v7(10) # => ["01863d24-6d1e-78ba-92ee-6e80c79c4e28", ...]
 ```
 
 ### Advanced Usage
@@ -75,7 +75,7 @@ If you require multiple generators you can drop below the simple API presented
 above to create generators directly.
 
 ```ruby
-v6 = Uuid::Version6.new
+v6 = Uuidx::Version6.new
 v6.generate # => "1eda9adc-2ed9-629e-9a02-4d2ccc87c569"
 ```
 
@@ -92,21 +92,21 @@ a generator directly. It takes a single parameter to its constructor which must
 be the class name of your UUID v8 definition.
 
 ```ruby
-v8 = Uuid::Version8.new(MyV8Definition)
+v8 = Uuidx::Version8.new(MyV8Definition)
 v8.generate # => "..."
 ```
 
 The definition class should implement the methods `custom_a`, `custom_b`, and
 `custom_c` in order to fill out the UUID data [according to the draft](https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-8).
 
-See the [documentation for Version8](https://tinychameleon.github.io/uuidx/Uuid/Version8.html) for precise details.
+See the [documentation for Version8](https://tinychameleon.github.io/uuidx/Uuidx/Version8.html) for precise details.
 
 #### Batching
 Any custom UUID v8 generators can also participate in batching by using the
 `batch` method. The thread-safety of this depends on your UUID v8 implementation.
 
 ```ruby
-Uuid.batch(v8, 10) # => ["<a v8 uuid>", ...]
+Uuidx.batch(v8, 10) # => ["<a v8 uuidx>", ...]
 ```
 
 ### Clock Resolution
@@ -116,24 +116,24 @@ is raised if the system has insufficient precision.
 
 ```ruby
 begin
-  Uuid::Version6.verify_clock_resolution! # or Uuid::Version7
-rescue Uuid::ClockResolutionError
+  Uuidx::Version6.verify_clock_resolution! # or Uuidx::Version7
+rescue Uuidx::ClockResolutionError
   # ...
 end
 ```
 
 The API documentation has details about what the clock resolution must be for
 each of the UUID versions. See the
-[Version 6](https://tinychameleon.github.io/uuidx/Uuid/Version6.html) and
-[Version 7](https://tinychameleon.github.io/uuidx/Uuid/Version7.html)
+[Version 6](https://tinychameleon.github.io/uuidx/Uuidx/Version6.html) and
+[Version 7](https://tinychameleon.github.io/uuidx/Uuidx/Version7.html)
 documentation for details.
 
 ### A Note on Clock Timings
 The API documentation contains specific details around how the implementations
 deal with clock drift. See the
-[Uuid](https://tinychameleon.github.io/uuidx/Uuid.html),
-[Version 6](https://tinychameleon.github.io/uuidx/Uuid/Version6.html), and
-[Version 7](https://tinychameleon.github.io/uuidx/Uuid/Version7.html)
+[Uuidx](https://tinychameleon.github.io/uuidx/Uuidx.html),
+[Version 6](https://tinychameleon.github.io/uuidx/Uuidx/Version6.html), and
+[Version 7](https://tinychameleon.github.io/uuidx/Uuidx/Version7.html)
 documentation for more information.
 
 ## Performance
@@ -184,7 +184,7 @@ To release a new version:
 
 1. ensure the documentation and changelog are ready
 2. run `bundle exec rake rdoc` to generate the new documentation and commit it
-3. update the version number in `lib/uuid/gem_version.rb`
+3. update the version number in `lib/uuidx/gem_version.rb`
 4. run `bundle install` to update the `Gemfile.lock`
 5. create a release commit with the version updates
 6. run `bundle exec rake release` to tag and push the version to RubyGems

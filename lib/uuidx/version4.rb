@@ -2,12 +2,12 @@
 
 require "securerandom"
 
-module Uuid
+module Uuidx
   # UUID Version 7 defined by the
   # {RFC 4122 BIS-01 Draft}[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-4].
   #
   # To construct a new UUID v4 value create a generator, then use #generate.
-  #   g = Uuid::Version4.new
+  #   g = Uuidx::Version4.new
   #   g.generate # => "2b54639d-e43e-489f-9c64-30ecdcac3c95"
   #
   # The implementation will cache 1024 bytes of random data from +SecureRandom+ to facilitate faster construction.
@@ -30,7 +30,7 @@ module Uuid
       @pool = SecureRandom.bytes(NEEDED_BYTES).unpack(UNPACK_FORMAT) if @pool.empty?
       ab, c = @pool.pop(2)
 
-      Uuid.format(VERSION_VARIANT | ((ab & RANDOM_AB_MASK) << AB_SHIFT) | (c & RANDOM_C_MASK))
+      Uuidx.format(VERSION_VARIANT | ((ab & RANDOM_AB_MASK) << AB_SHIFT) | (c & RANDOM_C_MASK))
     end
   end
 end

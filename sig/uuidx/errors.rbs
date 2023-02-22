@@ -1,4 +1,4 @@
-module Uuid
+module Uuidx
   class Error < StandardError
   end
 

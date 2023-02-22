@@ -8,7 +8,7 @@ class TestUuidVersion6 < Minitest::Test
   def setup
     Process.stub :clock_gettime, TIME do
       SecureRandom.stub :bytes, "\x0\x2\x4\x6\x8\xa\x9\x9" do
-        @gen = Uuid::Version6.new
+        @gen = Uuidx::Version6.new
         @uuid = @gen.generate
       end
     end

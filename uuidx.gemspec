@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/uuid/gem_version"
+require_relative "lib/uuidx/gem_version"
 
 Gem::Specification.new do |spec|
   spec.name = "uuidx"
-  spec.version = Uuid::VERSION
+  spec.version = Uuidx::VERSION
   spec.authors = ["Stephan Tarulli"]
   spec.email = ["srt@tinychameleon.com"]
 

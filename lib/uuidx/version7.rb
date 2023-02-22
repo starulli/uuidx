@@ -2,12 +2,12 @@
 
 require "securerandom"
 
-module Uuid
+module Uuidx
   # UUID Version 7 defined by the
   # {RFC 4122 BIS-01 Draft}[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-7].
   #
   # To construct a new UUID v7 value create a generator, then use #generate.
-  #   g = Uuid::Version7.new
+  #   g = Uuidx::Version7.new
   #   g.generate # => "01863d24-6d1e-78ba-92ee-6e80c79c4e28"
   #
   # The implementation will cache 640 bytes of random data from +SecureRandom+ to facilitate faster construction.
@@ -16,8 +16,8 @@ module Uuid
   # you can call ::verify_clock_resolution! and handle the ClockResolutionError as you see fit.
   #
   #   begin
-  #     Uuid::Version7.verify_clock_resolution!
-  #   rescue Uuid::ClockResolutionError
+  #     Uuidx::Version7.verify_clock_resolution!
+  #   rescue Uuidx::ClockResolutionError
   #     # ...
   #   end
   #
@@ -53,7 +53,7 @@ module Uuid
       ts = Process.clock_gettime(Process::CLOCK_REALTIME, :millisecond) & TS_MASK
       high = (ts << TS_SHIFT) | (a & RAND_A_MASK)
 
-      Uuid.format(VERSION_VARIANT | (high << HIGH_SHIFT) | (b & RAND_B_MASK))
+      Uuidx.format(VERSION_VARIANT | (high << HIGH_SHIFT) | (b & RAND_B_MASK))
     end
 
     # Verify that the clock resolution is capable of 1ms resolution.

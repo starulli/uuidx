@@ -2,12 +2,12 @@
 
 require "securerandom"
 
-module Uuid
+module Uuidx
   # UUID Version 6 defined by the
   # {RFC 4122 BIS-01 Draft}[https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-6].
   #
   # To construct a new UUID v6 value create a generator, then use #generate.
-  #   g = Uuid::Version6.new
+  #   g = Uuidx::Version6.new
   #   g.generate # => "1eda9761-9f6f-6414-8c5f-fd61f1239907"
   #
   # The implementation will use +SecureRandom+ to populate the Node and Clock Sequence bits with a random value
@@ -20,8 +20,8 @@ module Uuid
   # you can call ::verify_clock_resolution! and handle the ClockResolutionError as you see fit.
   #
   #   begin
-  #     Uuid::Version6.verify_clock_resolution!
-  #   rescue Uuid::ClockResolutionError
+  #     Uuidx::Version6.verify_clock_resolution!
+  #   rescue Uuidx::ClockResolutionError
   #     # ...
   #   end
   #
@@ -56,7 +56,7 @@ module Uuid
       ts = GREGORIAN_MICROSECOND_TENTHS + (Process.clock_gettime(Process::CLOCK_REALTIME, :nanosecond) / TS_NS_FACTOR)
       ts = ((ts << TS_MASK_SHIFT) & TS_HIGH_MID_MASK) | (ts & TS_LOW_MASK)
 
-      Uuid.format(VERSION_VARIANT | (ts << TS_POSITIONAL_SHIFT) | @clock_sequence | @node_id)
+      Uuidx.format(VERSION_VARIANT | (ts << TS_POSITIONAL_SHIFT) | @clock_sequence | @node_id)
     end
 
     # Reset the generator with a new random node ID and clock sequence.

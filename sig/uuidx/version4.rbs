@@ -1,4 +1,4 @@
-module Uuid
+module Uuidx
   class Version4
     def initialize: () -> void
     def generate: () -> uuid

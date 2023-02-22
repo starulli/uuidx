@@ -1,10 +1,9 @@
-module Uuid
-  class Version6
+module Uuidx
+  class Version7
     public
 
     def initialize: () -> void
     def generate: () -> uuid
-    def reset!:() -> void
 
     def self.verify_clock_resolution!: () -> true
   end

@@ -39,5 +39,5 @@ test-%:
 rbs:
 	@echo Running tests with type checks...
 	@RUBYOPT='-rrbs/test/setup' RBS_TEST_LOGLEVEL=error RBS_TEST_RAISE=true \
-		RBS_TEST_OPT='-Isig' RBS_TEST_TARGET='Uuid,Uuid::*' \
+		RBS_TEST_OPT='-Isig' RBS_TEST_TARGET='Uuidx,Uuidx::*' \
 		bundle exec rake test

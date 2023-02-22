@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../lib/uuid"
+require_relative "../lib/uuidx"
 
 class ConstantGeneratorDefinition # :nodoc:
   def custom_a
@@ -16,5 +16,5 @@ class ConstantGeneratorDefinition # :nodoc:
   end
 end
 
-g = Uuid::Version8.new(ConstantGeneratorDefinition)
+g = Uuidx::Version8.new(ConstantGeneratorDefinition)
 100_000.times { g.generate }
