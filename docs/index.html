@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>uuidx 0.9.0 documentation</title>
+<title>uuidx 0.10.0 documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -70,14 +70,14 @@
   <h3>Class and Module Index</h3>
 
   <ul class="link-list">
-  <li><details open><summary><code><a href="./Uuid.html">Uuid</a></code></summary>
+  <li><details open><summary><code><a href="./Uuidx.html">Uuidx</a></code></summary>
   <ul class="link-list">
-  <li><code><a href="./Uuid/ClockResolutionError.html">ClockResolutionError</a></code>
-  <li><code><a href="./Uuid/Error.html">Error</a></code>
-  <li><code><a href="./Uuid/Version4.html">Version4</a></code>
-  <li><code><a href="./Uuid/Version6.html">Version6</a></code>
-  <li><code><a href="./Uuid/Version7.html">Version7</a></code>
-  <li><code><a href="./Uuid/Version8.html">Version8</a></code>
+  <li><code><a href="./Uuidx/ClockResolutionError.html">ClockResolutionError</a></code>
+  <li><code><a href="./Uuidx/Error.html">Error</a></code>
+  <li><code><a href="./Uuidx/Version4.html">Version4</a></code>
+  <li><code><a href="./Uuidx/Version6.html">Version6</a></code>
+  <li><code><a href="./Uuidx/Version7.html">Version7</a></code>
+  <li><code><a href="./Uuidx/Version8.html">Version8</a></code>
   </ul></details>
 </div>
 
@@ -86,7 +86,7 @@
 
 <main role="main">
 
-<h1 align="center">uuidx</h1><p align="center">Fast Ruby implementations of UUID versions 4, 6, 7, and 8 🪪</p><hr>
+<h1 align="center">uuidx</h1><p align="center">Fast Ruby implementations of UUID versions 4, 6, 7, and 8 🪪</p><p align="center"><a href="https://badge.fury.io/rb/uuidx"><img src="https://badge.fury.io/rb/uuidx.svg" alt="Gem Version" height="18"></a></p><hr>
 
 <h2 id="label-What-27s+in+the+box-3F">What’s in the box?<span><a href="#label-What-27s+in+the+box-3F">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
@@ -119,18 +119,18 @@
 
 <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;uuidx&quot;</span>
 
-<span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">v4</span> <span class="ruby-comment"># =&gt; &quot;2b54639d-e43e-489f-9c64-30ecdcac3c95&quot;</span>
-<span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">v6</span> <span class="ruby-comment"># =&gt; &quot;1eda9761-9f6f-6414-8c5f-fd61f1239907&quot;</span>
-<span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">v7</span> <span class="ruby-comment"># =&gt; &quot;01863d24-6d1e-78ba-92ee-6e80c79c4e28&quot;</span>
+<span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">v4</span> <span class="ruby-comment"># =&gt; &quot;2b54639d-e43e-489f-9c64-30ecdcac3c95&quot;</span>
+<span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">v6</span> <span class="ruby-comment"># =&gt; &quot;1eda9761-9f6f-6414-8c5f-fd61f1239907&quot;</span>
+<span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">v7</span> <span class="ruby-comment"># =&gt; &quot;01863d24-6d1e-78ba-92ee-6e80c79c4e28&quot;</span>
 </pre>
 
 <p>These methods all use default generators and are thread-safe. However, if you are using child processes (like Puma’s clustered mode) you should also reset the generators you are using when each child process starts.</p>
 
 <pre class="ruby"><span class="ruby-comment"># Puma example that resets all default generators.</span>
 <span class="ruby-identifier">on_worker_boot</span> <span class="ruby-keyword">do</span>
-  <span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">reset_v4!</span>
-  <span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">reset_v6!</span>
-  <span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">reset_v7!</span>
+  <span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">reset_v4!</span>
+  <span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">reset_v6!</span>
+  <span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">reset_v7!</span>
 <span class="ruby-keyword">end</span>
 </pre>
 
@@ -138,18 +138,18 @@
 
 <h3 id="label-Monotonicity+-26+Batching">Monotonicity &amp; Batching<span><a href="#label-Monotonicity+-26+Batching">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>The simple API provided by <code>Uuid</code> also supports monotonic batches. Provide the batch size and you will receive an array of UUID values back.</p>
+<p>The simple API provided by <code>Uuidx</code> also supports monotonic batches. Provide the batch size and you will receive an array of UUID values back.</p>
 
-<pre class="ruby"><span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">batch_v4</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;2b54639d-e43e-489f-9c64-30ecdcac3c95&quot;, ...]</span>
-<span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">batch_v6</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;1eda9761-9f6f-6414-8c5f-fd61f1239907&quot;, ...]</span>
-<span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">batch_v7</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;01863d24-6d1e-78ba-92ee-6e80c79c4e28&quot;, ...]</span>
+<pre class="ruby"><span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">batch_v4</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;2b54639d-e43e-489f-9c64-30ecdcac3c95&quot;, ...]</span>
+<span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">batch_v6</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;1eda9761-9f6f-6414-8c5f-fd61f1239907&quot;, ...]</span>
+<span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">batch_v7</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;01863d24-6d1e-78ba-92ee-6e80c79c4e28&quot;, ...]</span>
 </pre>
 
 <h3 id="label-Advanced+Usage">Advanced Usage<span><a href="#label-Advanced+Usage">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>If you require multiple generators you can drop below the simple API presented above to create generators directly.</p>
 
-<pre class="ruby"><span class="ruby-identifier">v6</span> = <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">Version6</span>.<span class="ruby-identifier">new</span>
+<pre class="ruby"><span class="ruby-identifier">v6</span> = <span class="ruby-constant">Uuidx</span><span class="ruby-operator">::</span><span class="ruby-constant">Version6</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-identifier">v6</span>.<span class="ruby-identifier">generate</span> <span class="ruby-comment"># =&gt; &quot;1eda9adc-2ed9-629e-9a02-4d2ccc87c569&quot;</span>
 </pre>
 
@@ -161,19 +161,19 @@
 
 <p>UUID v8 is a special case of advanced usage that always requires you to build a generator directly. It takes a single parameter to its constructor which must be the class name of your UUID v8 definition.</p>
 
-<pre class="ruby"><span class="ruby-identifier">v8</span> = <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">Version8</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">MyV8Definition</span>)
+<pre class="ruby"><span class="ruby-identifier">v8</span> = <span class="ruby-constant">Uuidx</span><span class="ruby-operator">::</span><span class="ruby-constant">Version8</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">MyV8Definition</span>)
 <span class="ruby-identifier">v8</span>.<span class="ruby-identifier">generate</span> <span class="ruby-comment"># =&gt; &quot;...&quot;</span>
 </pre>
 
 <p>The definition class should implement the methods <code>custom_a</code>, <code>custom_b</code>, and <code>custom_c</code> in order to fill out the UUID data <a href="https://www.ietf.org/archive/id/draft-ietf-uuidrev-rfc4122bis-01.html#name-uuid-version-8">according to the draft</a>.</p>
 
-<p>See the <a href="https://tinychameleon.github.io/uuidx/Uuid/Version8.html">documentation for Version8</a> for precise details.</p>
+<p>See the <a href="https://tinychameleon.github.io/uuidx/Uuidx/Version8.html">documentation for Version8</a> for precise details.</p>
 
 <h4 id="label-Batching">Batching<span><a href="#label-Batching">&para;</a> <a href="#top">&uarr;</a></span></h4>
 
-<p>Any custom UUID v8 generators can also participate in thread-safe batching by using the <code>batch</code> method.</p>
+<p>Any custom UUID v8 generators can also participate in batching by using the <code>batch</code> method. The thread-safety of this depends on your UUID v8 implementation.</p>
 
-<pre class="ruby"><span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">batch</span>(<span class="ruby-identifier">v8</span>, <span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;&lt;a v8 uuid&gt;&quot;, ...]</span>
+<pre class="ruby"><span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">batch</span>(<span class="ruby-identifier">v8</span>, <span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;&lt;a v8 uuidx&gt;&quot;, ...]</span>
 </pre>
 
 <h3 id="label-Clock+Resolution">Clock Resolution<span><a href="#label-Clock+Resolution">&para;</a> <a href="#top">&uarr;</a></span></h3>
@@ -181,17 +181,17 @@
 <p>If you have need to verify the clock resolution for UUID v6 or v7 you can call the <code>verify_clock_resolution!</code> method on either class. A <code>ClockResolutionError</code> is raised if the system has insufficient precision.</p>
 
 <pre class="ruby"><span class="ruby-keyword">begin</span>
-  <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">Version6</span>.<span class="ruby-identifier">verify_clock_resolution!</span> <span class="ruby-comment"># or Uuid::Version7</span>
-<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">ClockResolutionError</span>
+  <span class="ruby-constant">Uuidx</span><span class="ruby-operator">::</span><span class="ruby-constant">Version6</span>.<span class="ruby-identifier">verify_clock_resolution!</span> <span class="ruby-comment"># or Uuidx::Version7</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Uuidx</span><span class="ruby-operator">::</span><span class="ruby-constant">ClockResolutionError</span>
   <span class="ruby-comment"># ...</span>
 <span class="ruby-keyword">end</span>
 </pre>
 
-<p>The API documentation has details about what the clock resolution must be for each of the UUID versions. See the <a href="https://tinychameleon.github.io/uuidx/Uuid/Version6.html">Version 6</a> and <a href="https://tinychameleon.github.io/uuidx/Uuid/Version7.html">Version 7</a> documentation for details.</p>
+<p>The API documentation has details about what the clock resolution must be for each of the UUID versions. See the <a href="https://tinychameleon.github.io/uuidx/Uuidx/Version6.html">Version 6</a> and <a href="https://tinychameleon.github.io/uuidx/Uuidx/Version7.html">Version 7</a> documentation for details.</p>
 
 <h3 id="label-A+Note+on+Clock+Timings">A Note on Clock Timings<span><a href="#label-A+Note+on+Clock+Timings">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>The API documentation contains specific details around how the implementations deal with clock drift. See the <a href="https://tinychameleon.github.io/uuidx/Uuid.html">Uuid</a>, <a href="https://tinychameleon.github.io/uuidx/Uuid/Version6.html">Version 6</a>, and <a href="https://tinychameleon.github.io/uuidx/Uuid/Version7.html">Version 7</a> documentation for more information.</p>
+<p>The API documentation contains specific details around how the implementations deal with clock drift. See the <a href="https://tinychameleon.github.io/uuidx/Uuidx.html">Uuidx</a>, <a href="https://tinychameleon.github.io/uuidx/Uuidx/Version6.html">Version 6</a>, and <a href="https://tinychameleon.github.io/uuidx/Uuidx/Version7.html">Version 7</a> documentation for more information.</p>
 
 <h2 id="label-Performance">Performance<span><a href="#label-Performance">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
@@ -201,23 +201,23 @@
 
 <p>and is run on a Macbook Pro with an M1 Max CPU.</p>
 
-<pre>❯ bundle exec ruby test/benchmarks/simple_api.rb
+<pre>❯ bundle exec ruby test/benchmarks/simple_api.rb 
 Warming up --------------------------------------
-              stdlib    62.055k i/100ms
-               uuid4   108.502k i/100ms
-               uuid6   114.782k i/100ms
-               uuid7   104.576k i/100ms
+              stdlib    60.617k i/100ms
+               uuid4   106.927k i/100ms
+               uuid6   111.417k i/100ms
+               uuid7   103.551k i/100ms
 Calculating -------------------------------------
-              stdlib    628.493k (± 0.2%) i/s -      3.165M in   5.035575s
-               uuid4      1.084M (± 1.1%) i/s -      5.425M in   5.005244s
-               uuid6      1.149M (± 0.2%) i/s -      5.854M in   5.096869s
-               uuid7      1.052M (± 0.8%) i/s -      5.333M in   5.071797s
+              stdlib    626.957k (± 0.3%) i/s -      3.152M in   5.027633s
+               uuid4      1.077M (± 1.2%) i/s -      5.453M in   5.065726s
+               uuid6      1.121M (± 0.2%) i/s -      5.682M in   5.067392s
+               uuid7      1.027M (± 1.3%) i/s -      5.178M in   5.041666s
 
 Comparison:
-               uuid6:  1148528.3 i/s
-               uuid4:  1084023.7 i/s - 1.06x  (± 0.00) slower
-               uuid7:  1051645.3 i/s - 1.09x  (± 0.00) slower
-              stdlib:   628492.6 i/s - 1.83x  (± 0.00) slower</pre>
+               uuid6:  1121344.6 i/s
+               uuid4:  1076662.4 i/s - 1.04x  (± 0.00) slower
+               uuid7:  1027127.8 i/s - 1.09x  (± 0.00) slower
+              stdlib:   626957.1 i/s - 1.79x  (± 0.00) slower</pre>
 
 <p>As reported, the <code>stdlib</code> version of <code>SecureRandom.uuid</code> is at least 1.70x slower than the simple API implementation of UUID v4.</p>
 
@@ -237,11 +237,11 @@ Comparison:
 </li><li>
 <p>run <code>bundle exec rake rdoc</code> to generate the new documentation and commit it</p>
 </li><li>
-<p>update the version number in <code>lib/uuid/gem_version.rb</code></p>
+<p>update the version number in <code>lib/uuidx/gem_version.rb</code></p>
 </li><li>
 <p>run <code>bundle install</code> to update the <code>Gemfile.lock</code></p>
 </li><li>
-<p>create a release commit with the version updates</p>
+<p>create a release commit with these updates</p>
 </li><li>
 <p>run <code>bundle exec rake release</code> to tag and push the version to RubyGems</p>
 </li></ol>

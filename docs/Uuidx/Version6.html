@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Uuid::Version6 - uuidx 0.9.0 documentation</title>
+<title>class Uuidx::Version6 - uuidx 0.10.0 documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -82,9 +82,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Uuid::Version6">
-  <h1 id="class-Uuid::Version6" class="class">
-    class Uuid::Version6
+<main role="main" aria-labelledby="class-Uuidx::Version6">
+  <h1 id="class-Uuidx::Version6" class="class">
+    class Uuidx::Version6
   </h1>
 
   <section class="description">
@@ -93,7 +93,7 @@
 
 <p>To construct a new UUID v6 value create a generator, then use <a href="Version6.html#method-i-generate"><code>generate</code></a>.</p>
 
-<pre class="ruby"><span class="ruby-identifier">g</span> = <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">Version6</span>.<span class="ruby-identifier">new</span>
+<pre class="ruby"><span class="ruby-identifier">g</span> = <span class="ruby-constant">Uuidx</span><span class="ruby-operator">::</span><span class="ruby-constant">Version6</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-identifier">g</span>.<span class="ruby-identifier">generate</span> <span class="ruby-comment"># =&gt; &quot;1eda9761-9f6f-6414-8c5f-fd61f1239907&quot;</span>
 </pre>
 
@@ -104,15 +104,15 @@
 <p>If you have need to make sure that the clock resolution is sufficient for the v6 specification you can call <a href="Version6.html#method-c-verify_clock_resolution-21"><code>::verify_clock_resolution!</code></a> and handle the <a href="ClockResolutionError.html"><code>ClockResolutionError</code></a> as you see fit.</p>
 
 <pre class="ruby"><span class="ruby-keyword">begin</span>
-  <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">Version6</span>.<span class="ruby-identifier">verify_clock_resolution!</span>
-<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">ClockResolutionError</span>
+  <span class="ruby-constant">Uuidx</span><span class="ruby-operator">::</span><span class="ruby-constant">Version6</span>.<span class="ruby-identifier">verify_clock_resolution!</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Uuidx</span><span class="ruby-operator">::</span><span class="ruby-constant">ClockResolutionError</span>
   <span class="ruby-comment"># ...</span>
 <span class="ruby-keyword">end</span>
 </pre>
 
 <p>The necessary clock resolution for v6 is 100ns.</p>
 
-<h5 id="class-Uuid::Version6-label-A+Note+on+Clock+Timings">A Note on Clock Timings<span><a href="#class-Uuid::Version6-label-A+Note+on+Clock+Timings">&para;</a> <a href="#top">&uarr;</a></span></h5>
+<h5 id="class-Uuidx::Version6-label-A+Note+on+Clock+Timings">A Note on Clock Timings<span><a href="#class-Uuidx::Version6-label-A+Note+on+Clock+Timings">&para;</a> <a href="#top">&uarr;</a></span></h5>
 
 <p>To combat clock drift, leap-second smearing, and other clock value changes that can appear without requiring additional compute cost this implementation always increments the clock sequence number.</p>
 
@@ -142,7 +142,7 @@
           <p>Construct a new UUID v6 generator.</p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/uuid/version6.rb, line 48</span>
+            <pre><span class="ruby-comment"># File lib/uuidx/version6.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
   <span class="ruby-identifier">reset!</span>
 <span class="ruby-keyword">end</span></pre>
@@ -167,7 +167,7 @@
 <p>Raises <a href="ClockResolutionError.html"><code>ClockResolutionError</code></a> when the clock resolution is insufficient.</p>
 
           <div class="method-source-code" id="verify_clock_resolution-21-source">
-            <pre><span class="ruby-comment"># File lib/uuid/version6.rb, line 73</span>
+            <pre><span class="ruby-comment"># File lib/uuidx/version6.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">verify_clock_resolution!</span>
   <span class="ruby-identifier">ns_res</span> = <span class="ruby-constant">Process</span>.<span class="ruby-identifier">clock_getres</span>(<span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-constant">CLOCK_REALTIME</span>, <span class="ruby-value">:nanosecond</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">ClockResolutionError</span>, <span class="ruby-node">&quot;Detected #{ns_res}ns resolution, need &lt;= 100ns&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ns_res</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">100</span>
@@ -200,14 +200,14 @@
           <p>Construct a UUID v6 value.</p>
 
           <div class="method-source-code" id="generate-source">
-            <pre><span class="ruby-comment"># File lib/uuid/version6.rb, line 53</span>
+            <pre><span class="ruby-comment"># File lib/uuidx/version6.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate</span>
   <span class="ruby-ivar">@clock_sequence</span> = (<span class="ruby-ivar">@clock_sequence</span> <span class="ruby-operator">+</span> <span class="ruby-constant">CLOCK_SEQ_INCREMENT</span>) <span class="ruby-operator">&amp;</span> <span class="ruby-constant">CLOCK_SEQ_MASK</span>
 
   <span class="ruby-identifier">ts</span> = <span class="ruby-constant">GREGORIAN_MICROSECOND_TENTHS</span> <span class="ruby-operator">+</span> (<span class="ruby-constant">Process</span>.<span class="ruby-identifier">clock_gettime</span>(<span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-constant">CLOCK_REALTIME</span>, <span class="ruby-value">:nanosecond</span>) <span class="ruby-operator">/</span> <span class="ruby-constant">TS_NS_FACTOR</span>)
   <span class="ruby-identifier">ts</span> = ((<span class="ruby-identifier">ts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">TS_MASK_SHIFT</span>) <span class="ruby-operator">&amp;</span> <span class="ruby-constant">TS_HIGH_MID_MASK</span>) <span class="ruby-operator">|</span> (<span class="ruby-identifier">ts</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">TS_LOW_MASK</span>)
 
-  <span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">format</span>(<span class="ruby-constant">VERSION_VARIANT</span> <span class="ruby-operator">|</span> (<span class="ruby-identifier">ts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">TS_POSITIONAL_SHIFT</span>) <span class="ruby-operator">|</span> <span class="ruby-ivar">@clock_sequence</span> <span class="ruby-operator">|</span> <span class="ruby-ivar">@node_id</span>)
+  <span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">format</span>(<span class="ruby-constant">VERSION_VARIANT</span> <span class="ruby-operator">|</span> (<span class="ruby-identifier">ts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">TS_POSITIONAL_SHIFT</span>) <span class="ruby-operator">|</span> <span class="ruby-ivar">@clock_sequence</span> <span class="ruby-operator">|</span> <span class="ruby-ivar">@node_id</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -230,7 +230,7 @@
 <p>This method is not thread-safe and should only be called at application or child process start.</p>
 
           <div class="method-source-code" id="reset-21-source">
-            <pre><span class="ruby-comment"># File lib/uuid/version6.rb, line 65</span>
+            <pre><span class="ruby-comment"># File lib/uuidx/version6.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reset!</span>
   <span class="ruby-ivar">@node_id</span> = (<span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">bytes</span>(<span class="ruby-value">8</span>).<span class="ruby-identifier">unpack1</span>(<span class="ruby-string">&quot;Q&quot;</span>) <span class="ruby-operator">&amp;</span> <span class="ruby-constant">NODE_ID_MASK</span>) <span class="ruby-operator">|</span> <span class="ruby-constant">NODE_ID_MC_BIT</span>
   <span class="ruby-ivar">@clock_sequence</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">bytes</span>(<span class="ruby-value">4</span>).<span class="ruby-identifier">unpack1</span>(<span class="ruby-string">&quot;L&quot;</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">CLOCK_SEQ_SHIFT</span>

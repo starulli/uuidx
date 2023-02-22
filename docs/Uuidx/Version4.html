@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Uuid::Version4 - uuidx 0.9.0 documentation</title>
+<title>class Uuidx::Version4 - uuidx 0.10.0 documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -80,9 +80,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Uuid::Version4">
-  <h1 id="class-Uuid::Version4" class="class">
-    class Uuid::Version4
+<main role="main" aria-labelledby="class-Uuidx::Version4">
+  <h1 id="class-Uuidx::Version4" class="class">
+    class Uuidx::Version4
   </h1>
 
   <section class="description">
@@ -91,7 +91,7 @@
 
 <p>To construct a new UUID v4 value create a generator, then use <a href="Version4.html#method-i-generate"><code>generate</code></a>.</p>
 
-<pre class="ruby"><span class="ruby-identifier">g</span> = <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">Version4</span>.<span class="ruby-identifier">new</span>
+<pre class="ruby"><span class="ruby-identifier">g</span> = <span class="ruby-constant">Uuidx</span><span class="ruby-operator">::</span><span class="ruby-constant">Version4</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-identifier">g</span>.<span class="ruby-identifier">generate</span> <span class="ruby-comment"># =&gt; &quot;2b54639d-e43e-489f-9c64-30ecdcac3c95&quot;</span>
 </pre>
 
@@ -123,7 +123,7 @@
           <p>Construct a UUID v4 generator.</p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/uuid/version4.rb, line 24</span>
+            <pre><span class="ruby-comment"># File lib/uuidx/version4.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
   <span class="ruby-ivar">@pool</span> = []
 <span class="ruby-keyword">end</span></pre>
@@ -153,12 +153,12 @@
           <p>Construct a UUID v4 value.</p>
 
           <div class="method-source-code" id="generate-source">
-            <pre><span class="ruby-comment"># File lib/uuid/version4.rb, line 29</span>
+            <pre><span class="ruby-comment"># File lib/uuidx/version4.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate</span>
   <span class="ruby-ivar">@pool</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">bytes</span>(<span class="ruby-constant">NEEDED_BYTES</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-constant">UNPACK_FORMAT</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@pool</span>.<span class="ruby-identifier">empty?</span>
   <span class="ruby-identifier">ab</span>, <span class="ruby-identifier">c</span> = <span class="ruby-ivar">@pool</span>.<span class="ruby-identifier">pop</span>(<span class="ruby-value">2</span>)
 
-  <span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">format</span>(<span class="ruby-constant">VERSION_VARIANT</span> <span class="ruby-operator">|</span> ((<span class="ruby-identifier">ab</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">RANDOM_AB_MASK</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">AB_SHIFT</span>) <span class="ruby-operator">|</span> (<span class="ruby-identifier">c</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">RANDOM_C_MASK</span>))
+  <span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">format</span>(<span class="ruby-constant">VERSION_VARIANT</span> <span class="ruby-operator">|</span> ((<span class="ruby-identifier">ab</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">RANDOM_AB_MASK</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">AB_SHIFT</span>) <span class="ruby-operator">|</span> (<span class="ruby-identifier">c</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">RANDOM_C_MASK</span>))
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

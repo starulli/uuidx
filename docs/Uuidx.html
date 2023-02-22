@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>module Uuid - uuidx 0.9.0 documentation</title>
+<title>module Uuidx - uuidx 0.10.0 documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -60,8 +60,8 @@
 
 
   <ul class="link-list" role="directory">
-              <li>      <a href="#module-Uuid-label-Monotonic+Batching">Monotonic Batching</a>
-          <li>      <a href="#module-Uuid-label-A+Note+on+Clock+Timings">A Note on Clock Timings</a>
+              <li>      <a href="#module-Uuidx-label-Monotonic+Batching">Monotonic Batching</a>
+          <li>      <a href="#module-Uuidx-label-A+Note+on+Clock+Timings">A Note on Clock Timings</a>
 
   </ul>
 </div>
@@ -96,40 +96,40 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="module-Uuid">
-  <h1 id="module-Uuid" class="module">
-    module Uuid
+<main role="main" aria-labelledby="module-Uuidx">
+  <h1 id="module-Uuidx" class="module">
+    module Uuidx
   </h1>
 
   <section class="description">
     
-<p>The <a href="Uuid.html"><code>Uuid</code></a> module contains a simple API to generate v4, v6, and v7 UUIDs without needing to create generators manually.</p>
+<p>The <a href="Uuidx.html"><code>Uuidx</code></a> module contains a simple API to generate v4, v6, and v7 UUIDs without needing to create generators manually.</p>
 
-<p>The simple API is exposed as a set of methods <a href="Uuid.html#method-c-v4"><code>::v4</code></a>, <a href="Uuid.html#method-c-v6"><code>::v6</code></a>, and <a href="Uuid.html#method-c-v7"><code>::v7</code></a> which handle thread-safety and generator creation.</p>
+<p>The simple API is exposed as a set of methods <a href="Uuidx.html#method-c-v4"><code>::v4</code></a>, <a href="Uuidx.html#method-c-v6"><code>::v6</code></a>, and <a href="Uuidx.html#method-c-v7"><code>::v7</code></a> which handle thread-safety and generator creation.</p>
 
-<pre class="ruby"><span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">v4</span> <span class="ruby-comment"># =&gt; &quot;2b54639d-e43e-489f-9c64-30ecdcac3c95&quot;</span>
-<span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">v6</span> <span class="ruby-comment"># =&gt; &quot;1eda9761-9f6f-6414-8c5f-fd61f1239907&quot;</span>
-<span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">v7</span> <span class="ruby-comment"># =&gt; &quot;01863d24-6d1e-78ba-92ee-6e80c79c4e28&quot;</span>
+<pre class="ruby"><span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">v4</span> <span class="ruby-comment"># =&gt; &quot;2b54639d-e43e-489f-9c64-30ecdcac3c95&quot;</span>
+<span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">v6</span> <span class="ruby-comment"># =&gt; &quot;1eda9761-9f6f-6414-8c5f-fd61f1239907&quot;</span>
+<span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">v7</span> <span class="ruby-comment"># =&gt; &quot;01863d24-6d1e-78ba-92ee-6e80c79c4e28&quot;</span>
 </pre>
 
-<p>See the <a href="Uuid/Version4.html"><code>Version4</code></a>, <a href="Uuid/Version6.html"><code>Version6</code></a>, and <a href="Uuid/Version7.html"><code>Version7</code></a> classes for details on how to create generators manually.</p>
+<p>See the <a href="Uuidx/Version4.html"><code>Version4</code></a>, <a href="Uuidx/Version6.html"><code>Version6</code></a>, and <a href="Uuidx/Version7.html"><code>Version7</code></a> classes for details on how to create generators manually.</p>
 
-<h5 id="module-Uuid-label-Monotonic+Batching">Monotonic Batching<span><a href="#module-Uuid-label-Monotonic+Batching">&para;</a> <a href="#top">&uarr;</a></span></h5>
+<h5 id="module-Uuidx-label-Monotonic+Batching">Monotonic Batching<span><a href="#module-Uuidx-label-Monotonic+Batching">&para;</a> <a href="#top">&uarr;</a></span></h5>
 
 <p>The simple API also provides thread-safe monotonic batch methods which expect an amount.</p>
 
-<pre class="ruby"><span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">batch_v4</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;2b54639d-e43e-489f-9c64-30ecdcac3c95&quot;, ...]</span>
-<span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">batch_v6</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;1eda9761-9f6f-6414-8c5f-fd61f1239907&quot;, ...]</span>
-<span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">batch_v7</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;01863d24-6d1e-78ba-92ee-6e80c79c4e28&quot;, ...]</span>
+<pre class="ruby"><span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">batch_v4</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;2b54639d-e43e-489f-9c64-30ecdcac3c95&quot;, ...]</span>
+<span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">batch_v6</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;1eda9761-9f6f-6414-8c5f-fd61f1239907&quot;, ...]</span>
+<span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">batch_v7</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; [&quot;01863d24-6d1e-78ba-92ee-6e80c79c4e28&quot;, ...]</span>
 </pre>
 
 <p>Monotonicity has little meaning with UUID v4, but the batches are ordered for consistency.</p>
 
-<h5 id="module-Uuid-label-A+Note+on+Clock+Timings">A Note on Clock Timings<span><a href="#module-Uuid-label-A+Note+on+Clock+Timings">&para;</a> <a href="#top">&uarr;</a></span></h5>
+<h5 id="module-Uuidx-label-A+Note+on+Clock+Timings">A Note on Clock Timings<span><a href="#module-Uuidx-label-A+Note+on+Clock+Timings">&para;</a> <a href="#top">&uarr;</a></span></h5>
 
 <p>This library uses the <code>Process::CLOCK_REALTIME</code> clock ID to obtain the current time. While the specification allows for implementations to manipulate time values, this library does not. Any system-based smearing or drift will appear within the timestamp values.</p>
 
-<p>See the <a href="Uuid/Version6.html"><code>Version6</code></a> and <a href="Uuid/Version7.html"><code>Version7</code></a> documentation for manifestation details.</p>
+<p>See the <a href="Uuidx/Version6.html"><code>Version6</code></a> and <a href="Uuidx/Version7.html"><code>Version7</code></a> documentation for manifestation details.</p>
 
   </section>
 
@@ -165,10 +165,10 @@
         <div class="method-description">
           <p>Create a batch of UUIDs from a generator.</p>
 
-<p>This can be useful for custom <a href="Uuid/Version8.html"><code>Version8</code></a> generators.</p>
+<p>This can be useful for custom <a href="Uuidx/Version8.html"><code>Version8</code></a> generators.</p>
 
           <div class="method-source-code" id="batch-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 128</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">batch</span>(<span class="ruby-identifier">generator</span>, <span class="ruby-identifier">amount</span>)
   <span class="ruby-identifier">s</span> = <span class="ruby-constant">Set</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">generator</span>.<span class="ruby-identifier">generate</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">amount</span>
@@ -193,12 +193,9 @@
           <p>Create a batch of UUID v4 values using the default generator.</p>
 
           <div class="method-source-code" id="batch_v4-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 84</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">batch_v4</span>(<span class="ruby-identifier">amount</span>)
-  <span class="ruby-ivar">@lock4</span>.<span class="ruby-identifier">lock</span>
-  <span class="ruby-identifier">r</span> = <span class="ruby-identifier">batch</span>(<span class="ruby-ivar">@uuid4</span>, <span class="ruby-identifier">amount</span>)
-  <span class="ruby-ivar">@lock4</span>.<span class="ruby-identifier">unlock</span>
-  <span class="ruby-identifier">r</span>
+  <span class="ruby-ivar">@lock4</span>.<span class="ruby-identifier">synchronize</span> { <span class="ruby-identifier">batch</span>(<span class="ruby-ivar">@uuid4</span>, <span class="ruby-identifier">amount</span>) }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -219,12 +216,9 @@
           <p>Create a batch of UUID v6 values using the default generator.</p>
 
           <div class="method-source-code" id="batch_v6-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 92</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">batch_v6</span>(<span class="ruby-identifier">amount</span>)
-  <span class="ruby-ivar">@lock6</span>.<span class="ruby-identifier">lock</span>
-  <span class="ruby-identifier">r</span> = <span class="ruby-identifier">batch</span>(<span class="ruby-ivar">@uuid6</span>, <span class="ruby-identifier">amount</span>)
-  <span class="ruby-ivar">@lock6</span>.<span class="ruby-identifier">unlock</span>
-  <span class="ruby-identifier">r</span>
+  <span class="ruby-ivar">@lock6</span>.<span class="ruby-identifier">synchronize</span> { <span class="ruby-identifier">batch</span>(<span class="ruby-ivar">@uuid6</span>, <span class="ruby-identifier">amount</span>) }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -245,12 +239,9 @@
           <p>Create a batch of UUID v7 values using the default generator.</p>
 
           <div class="method-source-code" id="batch_v7-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 100</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 86</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">batch_v7</span>(<span class="ruby-identifier">amount</span>)
-  <span class="ruby-ivar">@lock7</span>.<span class="ruby-identifier">lock</span>
-  <span class="ruby-identifier">r</span> = <span class="ruby-identifier">batch</span>(<span class="ruby-ivar">@uuid7</span>, <span class="ruby-identifier">amount</span>)
-  <span class="ruby-ivar">@lock7</span>.<span class="ruby-identifier">unlock</span>
-  <span class="ruby-identifier">r</span>
+  <span class="ruby-ivar">@lock7</span>.<span class="ruby-identifier">synchronize</span> { <span class="ruby-identifier">batch</span>(<span class="ruby-ivar">@uuid7</span>, <span class="ruby-identifier">amount</span>) }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -273,7 +264,7 @@
 <p>This UUID is written as <code>ffffffff-ffff-ffff-ffff-ffffffffffff</code> and is greater than all other UUIDs in comparisons.</p>
 
           <div class="method-source-code" id="max_uuid-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 55</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">max_uuid</span>
   <span class="ruby-string">&quot;ffffffff-ffff-ffff-ffff-ffffffffffff&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -298,7 +289,7 @@
 <p>This UUID is written as <code>00000000-0000-0000-0000-000000000000</code> and is less than all other UUIDs in comparisons. It does not act as <code>nil</code>.</p>
 
           <div class="method-source-code" id="nil_uuid-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 47</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">nil_uuid</span>
   <span class="ruby-string">&quot;00000000-0000-0000-0000-000000000000&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -321,7 +312,7 @@
           <p>Reset the UUID v4 default generator.</p>
 
           <div class="method-source-code" id="reset_v4-21-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 108</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">reset_v4!</span>
   <span class="ruby-ivar">@lock4</span> = <span class="ruby-constant">Mutex</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@uuid4</span> = <span class="ruby-constant">Version4</span>.<span class="ruby-identifier">new</span>
@@ -345,7 +336,7 @@
           <p>Reset the UUID v6 default generator.</p>
 
           <div class="method-source-code" id="reset_v6-21-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 114</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">reset_v6!</span>
   <span class="ruby-ivar">@lock6</span> = <span class="ruby-constant">Mutex</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@uuid6</span> = <span class="ruby-constant">Version6</span>.<span class="ruby-identifier">new</span>
@@ -369,7 +360,7 @@
           <p>Reset the UUID v7 default generator.</p>
 
           <div class="method-source-code" id="reset_v7-21-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 120</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">reset_v7!</span>
   <span class="ruby-ivar">@lock7</span> = <span class="ruby-constant">Mutex</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@uuid7</span> = <span class="ruby-constant">Version7</span>.<span class="ruby-identifier">new</span>
@@ -393,12 +384,9 @@
           <p>Generate a new UUID v4 value using the default generator.</p>
 
           <div class="method-source-code" id="v4-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 60</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">v4</span>
-  <span class="ruby-ivar">@lock4</span>.<span class="ruby-identifier">lock</span>
-  <span class="ruby-identifier">r</span> = <span class="ruby-ivar">@uuid4</span>.<span class="ruby-identifier">generate</span>
-  <span class="ruby-ivar">@lock4</span>.<span class="ruby-identifier">unlock</span>
-  <span class="ruby-identifier">r</span>
+  <span class="ruby-ivar">@lock4</span>.<span class="ruby-identifier">synchronize</span> { <span class="ruby-ivar">@uuid4</span>.<span class="ruby-identifier">generate</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -419,12 +407,9 @@
           <p>Generate a new UUID v6 value using the default generator.</p>
 
           <div class="method-source-code" id="v6-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 68</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">v6</span>
-  <span class="ruby-ivar">@lock6</span>.<span class="ruby-identifier">lock</span>
-  <span class="ruby-identifier">r</span> = <span class="ruby-ivar">@uuid6</span>.<span class="ruby-identifier">generate</span>
-  <span class="ruby-ivar">@lock6</span>.<span class="ruby-identifier">unlock</span>
-  <span class="ruby-identifier">r</span>
+  <span class="ruby-ivar">@lock6</span>.<span class="ruby-identifier">synchronize</span> { <span class="ruby-ivar">@uuid6</span>.<span class="ruby-identifier">generate</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -445,12 +430,9 @@
           <p>Generate a new UUID v7 value using the default generator.</p>
 
           <div class="method-source-code" id="v7-source">
-            <pre><span class="ruby-comment"># File lib/uuid.rb, line 76</span>
+            <pre><span class="ruby-comment"># File lib/uuidx.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">v7</span>
-  <span class="ruby-ivar">@lock7</span>.<span class="ruby-identifier">lock</span>
-  <span class="ruby-identifier">r</span> = <span class="ruby-ivar">@uuid7</span>.<span class="ruby-identifier">generate</span>
-  <span class="ruby-ivar">@lock7</span>.<span class="ruby-identifier">unlock</span>
-  <span class="ruby-identifier">r</span>
+  <span class="ruby-ivar">@lock7</span>.<span class="ruby-identifier">synchronize</span> { <span class="ruby-ivar">@uuid7</span>.<span class="ruby-identifier">generate</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

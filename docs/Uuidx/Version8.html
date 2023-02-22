@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Uuid::Version8 - uuidx 0.9.0 documentation</title>
+<title>class Uuidx::Version8 - uuidx 0.10.0 documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -80,9 +80,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Uuid::Version8">
-  <h1 id="class-Uuid::Version8" class="class">
-    class Uuid::Version8
+<main role="main" aria-labelledby="class-Uuidx::Version8">
+  <h1 id="class-Uuidx::Version8" class="class">
+    class Uuidx::Version8
   </h1>
 
   <section class="description">
@@ -117,7 +117,7 @@
 
 <p>Then create a UUID v8 generator by passing in the class, and call <a href="Version8.html#method-i-generate"><code>generate</code></a>.</p>
 
-<pre class="ruby"><span class="ruby-identifier">g</span> = <span class="ruby-constant">Uuid</span><span class="ruby-operator">::</span><span class="ruby-constant">Version8</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">MyGeneratorDefinition</span>)
+<pre class="ruby"><span class="ruby-identifier">g</span> = <span class="ruby-constant">Uuidx</span><span class="ruby-operator">::</span><span class="ruby-constant">Version8</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">MyGeneratorDefinition</span>)
 <span class="ruby-identifier">g</span>.<span class="ruby-identifier">generate</span> <span class="ruby-comment"># =&gt; &quot;00000000-0001-8002-8000-000000000003&quot;</span>
 </pre>
 
@@ -151,7 +151,7 @@
           <p>Construct a UUID v8 generator.</p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/uuid/version8.rb, line 45</span>
+            <pre><span class="ruby-comment"># File lib/uuidx/version8.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">definition_class</span>)
   <span class="ruby-ivar">@definition</span> = <span class="ruby-identifier">definition_class</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -181,14 +181,14 @@
           <p>Construct a UUID v8 value.</p>
 
           <div class="method-source-code" id="generate-source">
-            <pre><span class="ruby-comment"># File lib/uuid/version8.rb, line 50</span>
+            <pre><span class="ruby-comment"># File lib/uuidx/version8.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate</span>
   <span class="ruby-identifier">a</span> = <span class="ruby-ivar">@definition</span>.<span class="ruby-identifier">custom_a</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">CUSTOM_A_MASK</span>
   <span class="ruby-identifier">b</span> = <span class="ruby-ivar">@definition</span>.<span class="ruby-identifier">custom_b</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">CUSTOM_B_MASK</span>
   <span class="ruby-identifier">high</span> = (<span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">A_SHIFT</span>) <span class="ruby-operator">|</span> <span class="ruby-identifier">b</span>
   <span class="ruby-identifier">c</span> = <span class="ruby-ivar">@definition</span>.<span class="ruby-identifier">custom_c</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">CUSTOM_C_MASK</span>
 
-  <span class="ruby-constant">Uuid</span>.<span class="ruby-identifier">format</span>(<span class="ruby-constant">VERSION_VARIANT</span> <span class="ruby-operator">|</span> (<span class="ruby-identifier">high</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">HIGH_SHIFT</span>) <span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>)
+  <span class="ruby-constant">Uuidx</span>.<span class="ruby-identifier">format</span>(<span class="ruby-constant">VERSION_VARIANT</span> <span class="ruby-operator">|</span> (<span class="ruby-identifier">high</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">HIGH_SHIFT</span>) <span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

@@ -6,6 +6,9 @@
 
 # Alpha Releases
 
+## 0.10.0 &ndash; 2023-02-21
+- Refactor module name to `Uuidx`
+
 ## 0.9.0 &ndash; 2023-02-11
 - Swap gem name to shorter uuidx
 - Main documentation written

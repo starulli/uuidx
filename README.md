@@ -186,7 +186,7 @@ To release a new version:
 2. run `bundle exec rake rdoc` to generate the new documentation and commit it
 3. update the version number in `lib/uuidx/gem_version.rb`
 4. run `bundle install` to update the `Gemfile.lock`
-5. create a release commit with the version updates
+5. create a release commit with these updates
 6. run `bundle exec rake release` to tag and push the version to RubyGems
 
 ## Contributing
